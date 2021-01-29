@@ -48,10 +48,10 @@ public class RoomManager : MonoBehaviour
         }
     }
 
-    public void CameraMove(bool advancedRoom)
+    public void CameraMove(int advancedRoom)
     {
         //Increases/Decreases index
-        m_currentRoomTracker += (advancedRoom)? 1: -1;
+        m_currentRoomTracker = advancedRoom;
         ActiveCurrentRoom();
 
         //Stops bad indexing

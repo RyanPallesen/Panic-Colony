@@ -43,6 +43,8 @@ public class ProjectileShooter : MonoBehaviour
         {
             AimAssistRender();
         }
+
+        BallReclamationTests();
     }
 
     public LineRenderer lineRenderer;
@@ -76,5 +78,57 @@ public class ProjectileShooter : MonoBehaviour
 
         lineRenderer.positionCount = corners.Length - 1;
         lineRenderer.SetPositions(corners);
+    }
+
+    public void BallReclamationTests()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out RaycastHit hitInfo))
+        {
+
+            Projectile relatedProjectile = hitInfo.collider.GetComponent<Projectile>();
+            if (!relatedProjectile)
+            {
+                BallAcceptor ballAcceptor = hitInfo.collider.GetComponent<BallAcceptor>();
+                if (ballAcceptor)//hit ball acceptor
+                {
+                    if (ballAcceptor.acceotedObject)//acceptor is activated
+                    {
+                        relatedProjectile = ballAcceptor.acceotedObject.GetComponent<Projectile>();
+                    }
+                }
+            }
+
+            if (relatedProjectile)//we are hovering over a projectile
+            {
+                Vector3 direction = hitInfo.collider.transform.position - transform.position;
+                float distance = Vector3.Distance(transform.position, hitInfo.collider.transform.position);
+
+                Ray rayInner = new Ray(transform.position, direction);
+
+                if (Physics.Raycast(rayInner, out RaycastHit HitInfoInner, distance))
+                {
+                    Debug.Log(HitInfoInner.collider.gameObject.name);
+
+                    if (hitInfo.collider == HitInfoInner.collider)//have line of sight
+                    {
+                        //highlight yellow
+                        relatedProjectile.GetComponent<Renderer>().material.color = Color.yellow;
+
+                        if (Input.GetMouseButtonDown(1))
+                        {
+                            relatedProjectile.DestroyThis();
+                        }
+                    }
+                    else
+                    {
+                        //highlight red
+                        relatedProjectile.GetComponent<Renderer>().material.color = Color.red;
+
+                    }
+                }
+
+            }
+        }
     }
 }

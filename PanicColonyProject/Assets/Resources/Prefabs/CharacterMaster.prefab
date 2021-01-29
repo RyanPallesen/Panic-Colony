@@ -180,7 +180,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 529427732088736577, guid: 00d2e3298ce78794ea621963ad862c34, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 529427732088736577, guid: 00d2e3298ce78794ea621963ad862c34, type: 3}
       propertyPath: m_LocalPosition.z
@@ -232,10 +232,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4847309807996655993}
     m_Modifications:
-    - target: {fileID: 3239658403662859787, guid: b1ccd49635ac19d409fae8e94d31b2dd, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 04d620dcc70995b4a81ad5fbfb6c2120, type: 2}
     - target: {fileID: 7742751702117946672, guid: b1ccd49635ac19d409fae8e94d31b2dd, type: 3}
       propertyPath: m_Name
       value: Rendering
@@ -254,7 +250,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8245419910270000716, guid: b1ccd49635ac19d409fae8e94d31b2dd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.75
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8245419910270000716, guid: b1ccd49635ac19d409fae8e94d31b2dd, type: 3}
       propertyPath: m_LocalPosition.z

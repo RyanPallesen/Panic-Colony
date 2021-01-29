@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_showPath: 1
-  AI_Type: 0
+  AI_Type: 2
   m_stats:
     initialHealth: 100
     currentHealth: 100
@@ -56,15 +56,10 @@ MonoBehaviour:
   CanShoot: 0
   playerTransform: {fileID: 0}
   m_behaviourManager:
-    m_path:
-    - position: {x: 5, y: 0, z: 0}
-    - position: {x: 0, y: 0, z: 5}
-    - position: {x: -5, y: 0, z: 0}
-    - position: {x: 0, y: 0, z: -5}
-    shouldShoot: 0
-    m_rotateSpeed: 0
-  projectilePrefab: {fileID: 0}
-  velocityMultiplier: 0
+    m_path: []
+    m_rotateSpeed: 0.25
+  projectilePrefab: {fileID: 781752902832936173, guid: 96c309f61d8113541ae606707c6d616a, type: 3}
+  velocityMultiplier: 1
 --- !u!143 &2802413566917851986
 CharacterController:
   m_ObjectHideFlags: 0

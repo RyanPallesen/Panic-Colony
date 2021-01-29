@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class ProjectileShooter : MonoBehaviour
 {
+    public int numShotsAllowedActive = 2;
     public GameObject projectilePrefab;
     public float velocityMultiplier;
     public int AimAssistRendererSteps;
     public bool shouldAimAssist;
 
+    public List<Projectile> shotProjectiles = new List<Projectile>();
 
     // Start is called before the first frame update
     void Start()
@@ -19,7 +21,7 @@ public class ProjectileShooter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && shotProjectiles.Count < numShotsAllowedActive)
         {
 
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -30,7 +32,11 @@ public class ProjectileShooter : MonoBehaviour
 
             GameObject firedProjectile = Instantiate(projectilePrefab, transform.position + directionToShoot, transform.rotation);
 
-            firedProjectile.GetComponent<Projectile>().velocity = (directionToShoot * velocityMultiplier);
+            Projectile firedComponent = firedProjectile.GetComponent<Projectile>();
+
+            firedComponent.velocity = (directionToShoot * velocityMultiplier);
+            shotProjectiles.Add(firedComponent);
+            firedComponent.onDestroy.AddListener(() => shotProjectiles.Remove(firedComponent));
         }
 
         if (shouldAimAssist)

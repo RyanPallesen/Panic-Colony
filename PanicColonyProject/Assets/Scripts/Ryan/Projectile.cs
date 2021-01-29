@@ -25,7 +25,6 @@ public class Projectile : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log(collision.GetContact(0).otherCollider.name);
         velocity = Vector3.Reflect(velocity, collision.GetContact(0).normal);
         RicochetsLeft -= 1;
 

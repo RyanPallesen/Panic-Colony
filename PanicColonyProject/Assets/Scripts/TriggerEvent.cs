@@ -5,15 +5,24 @@ using UnityEngine.Events;
 
 public class TriggerEvent : MonoBehaviour
 {
-    public UnityEvent trigEvent;
-    public string trigTag = "Player";
+    public UnityEvent trigEnterEvent;
+	public UnityEvent trigExitEvent;
+	public string trigTag = "Player";
 
 
 	private void OnTriggerEnter(Collider other)
 	{
 		if(other.tag == trigTag)
 		{
-			trigEvent.Invoke();
+			trigEnterEvent.Invoke();
+		}
+	}
+
+	private void OnTriggerExit(Collider other)
+	{
+		if (other.tag == trigTag)
+		{
+			trigExitEvent.Invoke();
 		}
 	}
 

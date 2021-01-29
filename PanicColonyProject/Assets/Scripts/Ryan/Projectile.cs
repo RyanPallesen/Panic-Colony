@@ -7,7 +7,7 @@ using UnityEngine.Events;
 public class Projectile : MonoBehaviour
 {
     public Rigidbody rigidbody;
-
+    public UnityEvent collisionEvent;
     private int cacheRicochets;
     public int RicochetsLeft;
     public float MoveSpeed;
@@ -53,6 +53,7 @@ public class Projectile : MonoBehaviour
         {
             attachedAcceptor = hitAcceptor;
         }
+        collisionEvent.Invoke();
 
     }
 

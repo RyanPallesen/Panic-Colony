@@ -10,7 +10,7 @@ public class Rotation : MonoBehaviour
     private Vector3 m_pivotPoint = Vector3.zero;
     private int m_rotatedPercent = 0;
     private bool m_rotating = false, m_rotated = false;
-    private float m_magicNumber = 0.0f;
+    private float m_totalSpeed = 0.0f;
 
 
     #region Jon, i love you.. but what why would you call this magic number? B
@@ -53,13 +53,13 @@ public class Rotation : MonoBehaviour
         m_rotated = false;
         m_rotating = false;
         m_pivotPoint = transform.position + (transform.right * (transform.localScale.x / 2f) * -1f);
-        m_magicNumber = 100 - m_rotationSpeed;
+        m_totalSpeed = 100 - m_rotationSpeed;
     }
 
     private void Update()
     {
-        m_magicNumber = 100 - m_rotationSpeed;
-        if (m_rotatedPercent >= m_magicNumber)
+        m_totalSpeed = 100 - m_rotationSpeed;
+        if (m_rotatedPercent >= m_totalSpeed)
         {
             m_rotating = false;
         }
@@ -79,9 +79,9 @@ public class Rotation : MonoBehaviour
     {
         yield return new WaitForSeconds(0.01f);
         int rotationDirection = (m_rotated) ? -1 : 1;
-        transform.RotateAround(m_pivotPoint, Vector3.up, (rotationDirection * m_rotationAmount) / m_magicNumber);
+        transform.RotateAround(m_pivotPoint, Vector3.up, (rotationDirection * m_rotationAmount) / m_totalSpeed);
         m_rotatedPercent++;
-        if (m_rotatedPercent < m_magicNumber)
+        if (m_rotatedPercent < m_totalSpeed)
         {
             StartCoroutine(Rotating());
         }

@@ -94,7 +94,6 @@ namespace Assets.Scripts.AI
                     default:
                         break;
                 }
-                //projectile.Reset
                 OnHit?.Invoke();
             }
 

@@ -30,8 +30,6 @@ namespace Assets.Scripts.AI
         [HideInInspector]
         public Transform playerTransform;
 
-        private Projectile storedProjectile;
-
 
 
         void Start()
@@ -89,11 +87,7 @@ namespace Assets.Scripts.AI
                         FireProjectile(directionToPlayer); // needs fixing
                         break;
                     case BehaviourState.Snatcher:
-                        if (!CanShoot)
-                        {
-                            DisableProjectile(projectile);
-                            CanShoot = true;
-                        }
+                        CanShoot = true;
                         break;
                     case BehaviourState.idle:
                         break;
@@ -102,58 +96,10 @@ namespace Assets.Scripts.AI
                 }
                 OnHit?.Invoke();
             }
-        }
 
-        private void OnTriggerEnter(Collider other)
-        {
-            switch (AI_Type)
-            {
-                case BehaviourState.Spinner:
-                    break;
-                case BehaviourState.Smacker:
-                    break;
-                case BehaviourState.Snatcher:
-                    if (!CanShoot)
-                    {
-                        GetComponentInChildren<Animator>().SetTrigger("Catch");
-                    }
-                    break;
-                case BehaviourState.idle:
-                    break;
-                default:
-                    break;
-            }
-        }
-
-
-        #endregion
-
-        #region Projectile Helper Methods
-        private void FireProjectile(Vector3 directionToShoot)
-        {
-            Physics.IgnoreCollision(storedProjectile.GetComponent<Collider>(), this.GetComponent<Collider>());
-            storedProjectile.GetComponent<Renderer>().enabled = true;
-            storedProjectile.GetComponent<Projectile>().velocity = (directionToShoot * velocityMultiplier);
-            Collider projCollider = storedProjectile.GetComponent<Collider>();
-            foreach (var collider in GetComponents<Collider>())
-            {
-                if (projCollider != collider)
-                {
-                    Physics.IgnoreCollision(collider, projCollider);
-                }
-            }
-            CanShoot = false;
-            storedProjectile = null;
-        }
-
-        private void DisableProjectile(Projectile projectile)
-        {
-            projectile.GetComponent<Collider>().enabled = false;
-            projectile.GetComponent<Projectile>().velocity = Vector3.zero;
-            projectile.GetComponent<Renderer>().enabled = false;
-            storedProjectile = projectile;
         }
         #endregion
+
 
         #region Player Interactions
 
@@ -177,7 +123,12 @@ namespace Assets.Scripts.AI
         public event HitEventHandler OnHit;
         #endregion
 
-
+        private void FireProjectile(Vector3 directionToShoot)
+        {
+            GameObject firedProjectile = Instantiate(projectilePrefab, transform.position + directionToShoot, transform.rotation);
+            firedProjectile.GetComponent<Projectile>().velocity = (directionToShoot * velocityMultiplier);
+            CanShoot = false;
+        }
 
         private void OnDrawGizmos()
         {

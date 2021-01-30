@@ -49,12 +49,10 @@ public class ProjectileShooter : MonoBehaviour
 
     public LineRenderer lineRenderer;
     public Vector3[] corners;
-    public LayerMask BallReclamationLayerMask;
-
     public void AimAssistRender()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        Physics.Raycast(ray, out RaycastHit hitInfo, 100f, BallReclamationLayerMask);
+        Physics.Raycast(ray, out RaycastHit hitInfo);
         Vector3 alignedHitPoint = new Vector3(hitInfo.point.x, transform.position.y, hitInfo.point.z);// hitInfo.point.y = transform.position.y;
         Vector3 directionToShoot = alignedHitPoint - transform.position;
         Vector3 origin = transform.position;
@@ -67,7 +65,7 @@ public class ProjectileShooter : MonoBehaviour
 
             ray = new Ray(origin, directionToShoot);
 
-            if (Physics.Raycast(ray, out RaycastHit hitInfoInner,100f, BallReclamationLayerMask))
+            if (Physics.Raycast(ray, out RaycastHit hitInfoInner))
             {
                 origin = hitInfoInner.point;
                 directionToShoot = Vector3.Reflect(directionToShoot, hitInfoInner.normal);
@@ -81,17 +79,17 @@ public class ProjectileShooter : MonoBehaviour
         lineRenderer.positionCount = corners.Length - 1;
         lineRenderer.SetPositions(corners);
     }
+
     public void BallReclamationTests()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        BallAcceptor ballAcceptor = null;
-        if (Physics.Raycast(ray, out RaycastHit hitInfo, BallReclamationLayerMask))
+        if (Physics.Raycast(ray, out RaycastHit hitInfo))
         {
 
             Projectile relatedProjectile = hitInfo.collider.GetComponent<Projectile>();
             if (!relatedProjectile)
             {
-                ballAcceptor = hitInfo.collider.GetComponent<BallAcceptor>();
+                BallAcceptor ballAcceptor = hitInfo.collider.GetComponent<BallAcceptor>();
                 if (ballAcceptor)//hit ball acceptor
                 {
                     if (ballAcceptor.acceotedObject)//acceptor is activated
@@ -108,11 +106,11 @@ public class ProjectileShooter : MonoBehaviour
 
                 Ray rayInner = new Ray(transform.position, direction);
 
-                if (Physics.Raycast(rayInner, out RaycastHit HitInfoInner, distance, BallReclamationLayerMask))
+                if (Physics.Raycast(rayInner, out RaycastHit HitInfoInner, distance))
                 {
                     Debug.Log(HitInfoInner.collider.gameObject.name);
 
-                    if (hitInfo.collider == HitInfoInner.collider || HitInfoInner.collider == ballAcceptor.acceotedObject.GetComponent<Collider>())//have line of sight
+                    if (hitInfo.collider == HitInfoInner.collider)//have line of sight
                     {
                         //highlight yellow
                         relatedProjectile.GetComponent<Renderer>().material.color = Color.yellow;

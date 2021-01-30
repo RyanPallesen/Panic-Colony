@@ -20,32 +20,21 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: WallMatReflect
-  m_Shader: {fileID: -6465566751694194690, guid: d3464cc4ed016f44db08e414631d14c2, type: 3}
-  m_ShaderKeywords: _EMISSION
-  m_LightmapFlags: 2
+  m_Name: WallMatMid
+  m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
+  m_CustomRenderQueue: 2000
+  stringTagMap:
+    RenderType: Opaque
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - Texture2D_45A6460C:
-        m_Texture: {fileID: 2800000, guid: e8340971952989d44bbadeb1921e6a6f, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - Texture2D_6E8844C7:
-        m_Texture: {fileID: 2800000, guid: e5eeadd0b27204949898418ac168fd26, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - Texture2D_B8CE2CF6:
-        m_Texture: {fileID: 2800000, guid: c005af9ad5427b6498f672d322aea79d, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: e8340971952989d44bbadeb1921e6a6f, type: 3}
+        m_Texture: {fileID: 2800000, guid: e5eeadd0b27204949898418ac168fd26, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -53,11 +42,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
-        m_Texture: {fileID: 2800000, guid: c005af9ad5427b6498f672d322aea79d, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: e8340971952989d44bbadeb1921e6a6f, type: 3}
+        m_Texture: {fileID: 2800000, guid: e5eeadd0b27204949898418ac168fd26, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -73,9 +62,6 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_B3301402: 0
-    - Vector1_D0B0A3A4: 5
-    - Vector1_EFCDF311: 0
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
@@ -98,9 +84,8 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - Vector2_A15554C1: {r: 0, g: 0.5, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []

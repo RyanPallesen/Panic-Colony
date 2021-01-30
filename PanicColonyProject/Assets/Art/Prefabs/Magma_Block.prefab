@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5823126896817305781}
   - component: {fileID: 7449020416613316368}
   - component: {fileID: 4649064826122699738}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Magma_Block
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 8761785154017425316}
   - component: {fileID: 6308494510025667570}
   - component: {fileID: 8709107983450566137}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}

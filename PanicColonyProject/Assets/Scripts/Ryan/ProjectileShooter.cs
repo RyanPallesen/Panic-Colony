@@ -84,13 +84,14 @@ public class ProjectileShooter : MonoBehaviour
     public void BallReclamationTests()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        BallAcceptor ballAcceptor = null;
         if (Physics.Raycast(ray, out RaycastHit hitInfo, BallReclamationLayerMask))
         {
 
             Projectile relatedProjectile = hitInfo.collider.GetComponent<Projectile>();
             if (!relatedProjectile)
             {
-                BallAcceptor ballAcceptor = hitInfo.collider.GetComponent<BallAcceptor>();
+                ballAcceptor = hitInfo.collider.GetComponent<BallAcceptor>();
                 if (ballAcceptor)//hit ball acceptor
                 {
                     if (ballAcceptor.acceotedObject)//acceptor is activated
@@ -111,7 +112,7 @@ public class ProjectileShooter : MonoBehaviour
                 {
                     Debug.Log(HitInfoInner.collider.gameObject.name);
 
-                    if (hitInfo.collider == HitInfoInner.collider)//have line of sight
+                    if (hitInfo.collider == HitInfoInner.collider || HitInfoInner.collider == ballAcceptor.acceotedObject.GetComponent<Collider>())//have line of sight
                     {
                         //highlight yellow
                         relatedProjectile.GetComponent<Renderer>().material.color = Color.yellow;

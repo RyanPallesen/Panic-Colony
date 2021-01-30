@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3310835274071726277}
   - component: {fileID: 726913980918934543}
   - component: {fileID: 3246196450575206237}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Grass_Block
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 7817561335119599215}
   - component: {fileID: 1298619709558509640}
   - component: {fileID: 6234993314872853363}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}

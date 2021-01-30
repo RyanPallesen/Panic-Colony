@@ -30,7 +30,7 @@ namespace Assets.Scripts.AI
         [HideInInspector]
         public Transform playerTransform;
 
-        private Projectile storedProjectile;
+        private GameObject storedProjectile;
 
 
 
@@ -56,6 +56,8 @@ namespace Assets.Scripts.AI
                 Vector3 directionToShoot = alignedHitPoint - transform.position;
                 directionToShoot.Normalize();
                 FireProjectile(directionToShoot);
+                GetComponentInChildren<Animator>().SetTrigger("Throw");
+
             }
 
             if (Input.GetKeyDown(KeyCode.E) && AI_Type != BehaviourState.Spinner)
@@ -97,8 +99,6 @@ namespace Assets.Scripts.AI
                         break;
                     case BehaviourState.idle:
                         break;
-                    default:
-                        break;
                 }
                 OnHit?.Invoke();
             }
@@ -120,8 +120,6 @@ namespace Assets.Scripts.AI
                     break;
                 case BehaviourState.idle:
                     break;
-                default:
-                    break;
             }
         }
 
@@ -131,7 +129,6 @@ namespace Assets.Scripts.AI
         #region Projectile Helper Methods
         private void FireProjectile(Vector3 directionToShoot)
         {
-            Physics.IgnoreCollision(storedProjectile.GetComponent<Collider>(), this.GetComponent<Collider>());
             storedProjectile.GetComponent<Renderer>().enabled = true;
             storedProjectile.GetComponent<Projectile>().velocity = (directionToShoot * velocityMultiplier);
             Collider projCollider = storedProjectile.GetComponent<Collider>();
@@ -151,7 +148,7 @@ namespace Assets.Scripts.AI
             projectile.GetComponent<Collider>().enabled = false;
             projectile.GetComponent<Projectile>().velocity = Vector3.zero;
             projectile.GetComponent<Renderer>().enabled = false;
-            storedProjectile = projectile;
+            storedProjectile = projectile.gameObject;
         }
         #endregion
 

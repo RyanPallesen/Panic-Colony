@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Assertions.Must;
 
 namespace Assets.Scripts.AI
 {
@@ -128,6 +129,19 @@ namespace Assets.Scripts.AI
             }
             CanShoot = false;
             storedProjectile = null;
+        }
+
+        IEnumerator DelayFixCollisions()
+        {
+            yield return new WaitForSeconds(1f);
+            Collider projCollider = storedProjectile.GetComponent<Collider>();
+            foreach (var collider in GetComponents<Collider>())
+            {
+                if (projCollider != collider)
+                {
+                    Physics.IgnoreCollision(collider, projCollider, false);
+                }
+            }
         }
 
         private void DisableProjectile(Projectile projectile)

@@ -1,9 +1,5 @@
-﻿using System;
+﻿using System.Collections;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Assets.Scripts.AI
@@ -11,7 +7,8 @@ namespace Assets.Scripts.AI
     [System.Serializable]
     public class BehaviourManager
     {
-        public List<PathNode> m_path;  
+        public List<PathNode> m_path;
+        private Animator m_animator;
 
         [Tooltip("The distance this entity should move onto the next node in the list")]
         private float m_closeEnoughToTarget = 1;
@@ -20,17 +17,20 @@ namespace Assets.Scripts.AI
 
         [Header("Spinner Variables")]
         public float m_rotateSpeed;
+        private int m_currentFrame = 0;
 
         [Header("Snatcher Variables")]
         private int NDR = 0;
 
         public void Initialize(AI_Enemy entity)
         {
+            m_animator = entity.GetComponentInChildren<Animator>();
 
             entity.m_meshAgent.angularSpeed = 0; // standard speed is 120
             switch (entity.AI_Type)
             {
                 case BehaviourState.Spinner:
+                    entity.StartCoroutine(RotateSpinnerOverTime());
                     break;
                 case BehaviourState.Smacker:
                     break;
@@ -40,6 +40,17 @@ namespace Assets.Scripts.AI
                     break;
                 default:
                     break;
+            }
+        }
+
+        IEnumerator RotateSpinnerOverTime()
+        {
+            yield return new WaitForSeconds(m_rotateSpeed);
+            m_animator.SetInteger("position", m_currentFrame);
+            m_currentFrame++;
+            if (m_currentFrame > 7)
+            {
+                m_currentFrame = 0;
             }
         }
 
@@ -56,7 +67,6 @@ namespace Assets.Scripts.AI
                     {
                         MoveOnPath(entity);
                     }
-                    entity.transform.Rotate(entity.transform.up, m_rotateSpeed);
                     break;
 
                 case BehaviourState.Snatcher:
@@ -88,14 +98,6 @@ namespace Assets.Scripts.AI
                     entity.transform.rotation = Quaternion.LookRotation(lookDirectionToPlayer);
                     break;
                 case BehaviourState.idle:
-                    if (m_path.Count > 0)
-                    {
-                        MoveOnPath(entity);
-                    }
-                    break;
-
-
-                default:
                     break;
             }
         }

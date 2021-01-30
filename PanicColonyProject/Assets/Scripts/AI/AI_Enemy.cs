@@ -108,6 +108,7 @@ namespace Assets.Scripts.AI
         #region Projectile Helper Methods
         private void FireProjectile(Vector3 directionToShoot)
         {
+            storedProjectile.transform.position = transform.position;
             storedProjectile.GetComponent<Renderer>().enabled = true;
             storedProjectile.GetComponent<Projectile>().velocity = (directionToShoot * velocityMultiplier);
             Collider projCollider = storedProjectile.GetComponent<Collider>();

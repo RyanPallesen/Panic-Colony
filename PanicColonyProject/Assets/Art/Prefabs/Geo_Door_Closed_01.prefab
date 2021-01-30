@@ -206,6 +206,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4671431516630110164}
   - component: {fileID: 5142824126225356550}
+  - component: {fileID: 9096468462574393071}
   m_Layer: 0
   m_Name: Geo_Door_Closed_01
   m_TagString: Untagged
@@ -246,6 +247,22 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!114 &9096468462574393071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5449235265740412270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ded9089214efbb4eb053d624f634113, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isOpen: 0
+  animationLength: 1
+  joint3: {fileID: 8949302955703794622}
+  joint5: {fileID: 7207673702368786686}
 --- !u!1 &5668124815995529858
 GameObject:
   m_ObjectHideFlags: 0

@@ -29,6 +29,34 @@ public class PlayerLocomotion : MonoBehaviour
 
         Vector3 move = new Vector3(horizontal, 0, vertical);
         
+        switch(CameraRoomMover.instance.DegreesRotatedClockwise)
+        {
+            case 0:
+
+                break;
+            case 1:
+                {
+                    float tempX = move.x;
+                    float tempZ = move.z;
+
+                    move.x = tempZ;
+                    move.z = -tempX;
+                }
+                break;
+            case 2:
+                move *= -1;
+                break;
+            case 3:
+                {
+                    float tempX = move.x;
+                    float tempZ = move.z;
+
+                    move.x = -tempZ;
+                    move.z = tempX;
+                }
+                break;
+        }
+
         if (vertical > 0)
         {
             animVert = 0;

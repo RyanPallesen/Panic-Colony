@@ -33,6 +33,21 @@ public class BallButton : MonoBehaviour
     {
         Projectile projectile = collision.collider.GetComponent<Projectile>();
 
+        Debug.Log("BallButton interacted with by " + collision.collider.gameObject.name);
+
+        if (projectile)
+        {
+            fixedAge = 0f;
+            onAcceptBall.Invoke();
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Projectile projectile = other.GetComponent<Projectile>();
+
+        Debug.Log("BallButton interacted with by " + other.gameObject.name);
+
         if (projectile)
         {
             fixedAge = 0f;

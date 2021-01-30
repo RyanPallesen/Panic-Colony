@@ -46,6 +46,8 @@ public class Projectile : MonoBehaviour
             velocity = Vector3.Reflect(velocity, collision.GetContact(0).normal);
             RicochetsLeft -= 1;
 
+            lastAttachedAI = null;
+
             if (RicochetsLeft < 0)
             {
                 DestroyThis();
@@ -53,6 +55,8 @@ public class Projectile : MonoBehaviour
         }
         else if(hitAcceptor && !hitAcceptor.acceotedObject)
         {
+            lastAttachedAI = null;
+
             attachedAcceptor = hitAcceptor;
         }
         else

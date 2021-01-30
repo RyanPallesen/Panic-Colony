@@ -26,7 +26,8 @@ namespace Assets.Scripts.AI
 
         public void Initialize(AI_Enemy entity)
         {
-            entity.m_meshAgent.angularSpeed = 0;
+
+            entity.m_meshAgent.angularSpeed = 0; // standard speed is 120
             switch (entity.AI_Type)
             {
                 case BehaviourState.Spinner:
@@ -45,6 +46,9 @@ namespace Assets.Scripts.AI
 
         public void Run(AI_Enemy entity)
         {
+            Vector3 directionToPlayer = entity.playerTransform.position - entity.transform.position;
+            Vector3 lookDirectionToPlayer = Vector3.RotateTowards(entity.transform.forward, directionToPlayer, 15 * Time.deltaTime, 0);
+
             switch (entity.AI_Type)
             {
                 case BehaviourState.Spinner:
@@ -63,9 +67,7 @@ namespace Assets.Scripts.AI
                     }
                     if (!entity.CanShoot)
                     {
-                        Vector3 lookPoint = entity.playerTransform.position - entity.transform.position;
-                        Vector3 newDirection = Vector3.RotateTowards(entity.transform.forward, lookPoint, 15 * Time.deltaTime, 0);
-                        entity.transform.rotation = Quaternion.LookRotation(newDirection);
+                        entity.transform.rotation = Quaternion.LookRotation(lookDirectionToPlayer);
                     }
                     else
                     {
@@ -73,11 +75,9 @@ namespace Assets.Scripts.AI
                         RaycastHit hit;
                         Physics.Raycast(ray, out hit);
                         Vector3 lookPoint = hit.point - entity.transform.position;
-                        Vector3 newDirection = Vector3.RotateTowards(entity.transform.forward, lookPoint, 15 * Time.deltaTime, 0);
-                        entity.transform.rotation = Quaternion.LookRotation(newDirection);
+                        Vector3 hitDirection = Vector3.RotateTowards(entity.transform.forward, lookPoint, 15 * Time.deltaTime, 0);
+                        entity.transform.rotation = Quaternion.LookRotation(hitDirection);
                     }
-
-
                     break;
 
                 case BehaviourState.Smacker:
@@ -85,6 +85,7 @@ namespace Assets.Scripts.AI
                     {
                         MoveOnPath(entity);
                     }
+                    entity.transform.rotation = Quaternion.LookRotation(lookDirectionToPlayer);
                     break;
                 case BehaviourState.idle:
                     if (m_path.Count > 0)

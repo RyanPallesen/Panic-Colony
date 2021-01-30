@@ -245,11 +245,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2802413566917851989, guid: 9d0b1088b9af0f440a97db1570ea4f66, type: 3}
       propertyPath: AI_Type
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2802413566917851989, guid: 9d0b1088b9af0f440a97db1570ea4f66, type: 3}
       propertyPath: CanShoot
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2802413566917851989, guid: 9d0b1088b9af0f440a97db1570ea4f66, type: 3}
       propertyPath: projectilePrefab
@@ -265,7 +265,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2802413566917851989, guid: 9d0b1088b9af0f440a97db1570ea4f66, type: 3}
       propertyPath: m_behaviourManager.m_path.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2802413566917851989, guid: 9d0b1088b9af0f440a97db1570ea4f66, type: 3}
+      propertyPath: m_behaviourManager.m_path.Array.data[0].position.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2802413566917851989, guid: 9d0b1088b9af0f440a97db1570ea4f66, type: 3}
+      propertyPath: m_behaviourManager.m_path.Array.data[1].position.z
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2802413566917851989, guid: 9d0b1088b9af0f440a97db1570ea4f66, type: 3}
+      propertyPath: m_behaviourManager.m_path.Array.data[2].position.x
+      value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2802413566917851989, guid: 9d0b1088b9af0f440a97db1570ea4f66, type: 3}
+      propertyPath: m_behaviourManager.m_path.Array.data[2].position.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2802413566917851989, guid: 9d0b1088b9af0f440a97db1570ea4f66, type: 3}
+      propertyPath: m_behaviourManager.m_path.Array.data[3].position.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2802413566917851989, guid: 9d0b1088b9af0f440a97db1570ea4f66, type: 3}
+      propertyPath: m_behaviourManager.m_path.Array.data[3].position.z
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 2802413568101863545, guid: 9d0b1088b9af0f440a97db1570ea4f66, type: 3}
       propertyPath: m_Enabled
@@ -729,26 +753,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2802413566917851988, guid: 9d0b1088b9af0f440a97db1570ea4f66, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2802413566917851989, guid: 9d0b1088b9af0f440a97db1570ea4f66, type: 3}
-      propertyPath: AI_Type
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2802413566917851989, guid: 9d0b1088b9af0f440a97db1570ea4f66, type: 3}
-      propertyPath: projectilePrefab
-      value: 
-      objectReference: {fileID: 781752902832936173, guid: 96c309f61d8113541ae606707c6d616a, type: 3}
-    - target: {fileID: 2802413566917851989, guid: 9d0b1088b9af0f440a97db1570ea4f66, type: 3}
-      propertyPath: velocityMultiplier
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2802413566917851989, guid: 9d0b1088b9af0f440a97db1570ea4f66, type: 3}
-      propertyPath: m_behaviourManager.m_rotateSpeed
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 2802413566917851989, guid: 9d0b1088b9af0f440a97db1570ea4f66, type: 3}
-      propertyPath: m_behaviourManager.m_path.Array.size
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2802413568101863545, guid: 9d0b1088b9af0f440a97db1570ea4f66, type: 3}

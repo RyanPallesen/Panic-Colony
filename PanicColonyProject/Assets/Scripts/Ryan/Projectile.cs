@@ -39,7 +39,7 @@ public class Projectile : MonoBehaviour
     {
         BallAcceptor hitAcceptor = collision.collider.GetComponent<BallAcceptor>();
 
-        if (!hitAcceptor || hitAcceptor.acceotedObject)
+        if ((!hitAcceptor || hitAcceptor.acceotedObject) && (collision.collider.CompareTag("Reflect")))
         {
             velocity = Vector3.Reflect(velocity, collision.GetContact(0).normal);
             RicochetsLeft -= 1;
@@ -49,12 +49,16 @@ public class Projectile : MonoBehaviour
                 DestroyThis();
             }
         }
-        else
+        else if(hitAcceptor)
         {
             attachedAcceptor = hitAcceptor;
         }
-        collisionEvent.Invoke();
+        else
+        {
+            DestroyThis();
+        }
 
+        collisionEvent.Invoke();
     }
 
     public void ResetRicochets()

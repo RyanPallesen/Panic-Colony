@@ -44,9 +44,6 @@ public class Room : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-
-        Debug.Log("Trigger entered by " + other.name);
-
         if(other.GetComponent<PlayerLocomotion>())
         {
             CameraRoomMover.instance.SetBounds(bound);

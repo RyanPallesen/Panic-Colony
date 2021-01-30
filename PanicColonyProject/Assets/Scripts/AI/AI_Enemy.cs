@@ -64,12 +64,6 @@ namespace Assets.Scripts.AI
             }
         }
 
-        private IEnumerator DelayResetTrigger()
-        {
-            yield return new WaitForSeconds(1.5f);
-            GetComponent<BoxCollider>().enabled = true;
-        }
-
 
         #region Collision
         private void OnTriggerEnter(Collider collision)
@@ -99,7 +93,6 @@ namespace Assets.Scripts.AI
                         {
                             DisableProjectile(projectile);
                             GetComponentInChildren<Animator>().SetTrigger("Catch");
-                            GetComponent<BoxCollider>().enabled = false;
                             CanShoot = true;
                         }
                         break;
@@ -119,33 +112,11 @@ namespace Assets.Scripts.AI
             storedProjectile.transform.position = transform.position;
             storedProjectile.GetComponent<Renderer>().enabled = true;
             storedProjectile.GetComponent<Projectile>().velocity = (directionToShoot * velocityMultiplier);
-            Collider projCollider = storedProjectile.GetComponent<Collider>();
-            foreach (var collider in GetComponents<Collider>())
-            {
-                if (projCollider != collider)
-                {
-                    Physics.IgnoreCollision(collider, projCollider);
-                }
-            }
-            StartCoroutine(DelayFixCollisions());
+            storedProjectile.GetComponent<Collider>().enabled = true;
+
             CanShoot = false;
         }
 
-        //public float debugDelayFixCollision_for_jibril = .25f;
-        IEnumerator DelayFixCollisions()
-        {
-            yield return new WaitForSeconds(.2f);
-            Collider projCollider = storedProjectile.GetComponent<Collider>();
-            foreach (var collider in GetComponents<Collider>())
-            {
-                if (projCollider != collider)
-                {
-                    Physics.IgnoreCollision(collider, projCollider, false);
-                }
-            }
-            storedProjectile.GetComponent<Collider>().enabled = true;
-            storedProjectile = null;
-        }
 
         private void DisableProjectile(Projectile projectile)
         {

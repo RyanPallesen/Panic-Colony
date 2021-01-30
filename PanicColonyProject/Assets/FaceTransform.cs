@@ -10,12 +10,13 @@ public class FaceTransform : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.rotation = Quaternion.LookRotation(transformToFollow.transform.position - transform.position) * Quaternion.Euler(0, 180, 0);
+        if (transformToFollow)
+            transform.rotation = Quaternion.LookRotation(transformToFollow.transform.position - transform.position) * Quaternion.Euler(0, 180, 0);
     }
 }

@@ -57,6 +57,7 @@ public class Projectile : MonoBehaviour
         }
         else
         {
+            Debug.Log("projectile has hit and destroyed on " + collision.collider.transform.parent.name);
             DestroyThis();
         }
 

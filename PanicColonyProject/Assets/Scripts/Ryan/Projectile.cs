@@ -49,7 +49,7 @@ public class Projectile : MonoBehaviour
                 DestroyThis();
             }
         }
-        else if(hitAcceptor)
+        else if(hitAcceptor && !hitAcceptor.acceotedObject)
         {
             attachedAcceptor = hitAcceptor;
         }

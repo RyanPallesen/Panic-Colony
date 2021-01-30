@@ -60,7 +60,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4d6b6507c8e5c124e9eb3d5463b442d6, type: 2}
+  - {fileID: 2100000, guid: 1845c57ac373b3a499db3a6b598540bd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 3916900016305806917}
   - component: {fileID: 8113294896247479672}
   m_Layer: 8
-  m_Name: Brick_Block
+  m_Name: Brick_Block 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -156,7 +156,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1845c57ac373b3a499db3a6b598540bd, type: 2}
+  - {fileID: 2100000, guid: 4d6b6507c8e5c124e9eb3d5463b442d6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

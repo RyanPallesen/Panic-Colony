@@ -44,12 +44,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8e4626c01e93544c82582a311091328, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  numShotsAllowedActive: 2
   projectilePrefab: {fileID: 781752902832936173, guid: 96c309f61d8113541ae606707c6d616a, type: 3}
   velocityMultiplier: 15
   AimAssistRendererSteps: 4
   shouldAimAssist: 1
+  shotProjectiles: []
   lineRenderer: {fileID: 3285766444356446501}
   corners: []
+  BallReclamationLayerMask:
+    serializedVersion: 2
+    m_Bits: 787
 --- !u!120 &3285766444356446501
 LineRenderer:
   m_ObjectHideFlags: 0

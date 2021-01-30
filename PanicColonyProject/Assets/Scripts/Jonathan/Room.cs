@@ -32,7 +32,7 @@ public class Room : MonoBehaviour
         collider.isTrigger = true;
         collider.center = bound.center - transform.position;
         collider.size = bound.extents * 2f;
-
+        collider.gameObject.layer = 2;
         
     }
 

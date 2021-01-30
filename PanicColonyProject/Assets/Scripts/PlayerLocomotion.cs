@@ -9,6 +9,8 @@ public class PlayerLocomotion : MonoBehaviour
     public float speed = 1f;
     public float soundWaitTime = 1;
     float tempSoundWaitTime;
+    float animVert, animHorz;
+    public Animator animatior;
 
     // Start is called before the first frame update
     void Start()
@@ -16,12 +18,44 @@ public class PlayerLocomotion : MonoBehaviour
         controller = GetComponent<CharacterController>();
         audio = GetComponent<AudioSource>();
         tempSoundWaitTime = soundWaitTime;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        float horizontal = Input.GetAxis("Horizontal");
+        float vertical = Input.GetAxis("Vertical");
+
+        Vector3 move = new Vector3(horizontal, 0, vertical);
+        
+        if (vertical > 0)
+        {
+            animVert = 0;
+            animHorz = 1;
+        }
+        else if (vertical < 0)
+        {
+            animVert = 0;
+            animHorz = -1;
+        }
+
+        if (horizontal > 0)
+        {
+            animHorz = 0;
+            animVert = 1;
+        }
+        else if (horizontal < 0)
+        {
+            animHorz = 0;
+            animVert = -1;
+        }
+
+        animatior.SetFloat("Blend_Side", animVert);
+        animatior.SetFloat("Blend_ForwradsBack", animHorz);
+        animatior.SetBool("Bool_Walkable", (horizontal != 0 || vertical != 0) ? true : false);
+
+
         if (!isMoving && move != Vector3.zero)
 		{
             audio.Play();

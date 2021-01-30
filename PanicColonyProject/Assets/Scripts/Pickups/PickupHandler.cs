@@ -10,15 +10,16 @@ public class PickupHandler : MonoBehaviour
 {
     public static PickupHandler instance;
 
-    public Transform hubRoomRespawnPoint;
+    [SerializeField]
+    private Transform hubRoomRespawnPoint;
 
-    public Image keyUISlot0;
-    public Image keyUISlot1;
-    public Image keyUISlot2;
-    public Image keyUISlot3;
+    private bool keyUISlot0;
+    private bool keyUISlot1;
+    private bool keyUISlot2;
+    private bool keyUISlot3;
 
-    bool m_shouldRespawnPlayer = false;
-    Transform m_playerTransform;
+    private bool m_shouldRespawnPlayer = false;
+    private Transform m_playerTransform;
 
     private void Awake()
     {
@@ -56,13 +57,13 @@ public class PickupHandler : MonoBehaviour
         switch (index)
         {
             case 0:
-                return keyUISlot0.enabled;
+                return keyUISlot0;
             case 1:
-                return keyUISlot1.enabled;
+                return keyUISlot1;
             case 2:
-                return keyUISlot2.enabled;
+                return keyUISlot2;
             case 3:
-                return keyUISlot3.enabled;
+                return keyUISlot3;
             default:
                 throw new Exception("Key index not found, Why are you like this?");
         }
@@ -77,10 +78,10 @@ public class PickupHandler : MonoBehaviour
     {
         return
             (
-            keyUISlot0.enabled == true &&
-            keyUISlot1.enabled == true &&
-            keyUISlot2.enabled == true &&
-            keyUISlot3.enabled == true
+            keyUISlot0 == true &&
+            keyUISlot1 == true &&
+            keyUISlot2 == true &&
+            keyUISlot3 == true
             );
     }
 
@@ -92,16 +93,16 @@ public class PickupHandler : MonoBehaviour
         switch (keyIndex)
         {
             case 0:
-                keyUISlot0.gameObject.SetActive(true);
+                keyUISlot0 = true;
                 break;
             case 1:
-                keyUISlot1.gameObject.SetActive(true);
+                keyUISlot1 = true;
                 break;
             case 2:
-                keyUISlot2.gameObject.SetActive(true);
+                keyUISlot2 = true;
                 break;
             case 3:
-                keyUISlot3.gameObject.SetActive(true);
+                keyUISlot3 = true;
                 break;
             default:
                 throw new Exception("Key index not found, Why are you like this?");

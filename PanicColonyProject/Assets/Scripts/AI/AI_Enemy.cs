@@ -129,13 +129,12 @@ namespace Assets.Scripts.AI
             }
             StartCoroutine(DelayFixCollisions());
             CanShoot = false;
-            storedProjectile = null;
         }
 
-        public float debugDelayFixCollision_for_jibril = .25f;
+        //public float debugDelayFixCollision_for_jibril = .25f;
         IEnumerator DelayFixCollisions()
         {
-            yield return new WaitForSeconds(debugDelayFixCollision_for_jibril);
+            yield return new WaitForSeconds(.2f);
             Collider projCollider = storedProjectile.GetComponent<Collider>();
             foreach (var collider in GetComponents<Collider>())
             {
@@ -144,6 +143,8 @@ namespace Assets.Scripts.AI
                     Physics.IgnoreCollision(collider, projCollider, false);
                 }
             }
+            storedProjectile.GetComponent<Collider>().enabled = true;
+            storedProjectile = null;
         }
 
         private void DisableProjectile(Projectile projectile)

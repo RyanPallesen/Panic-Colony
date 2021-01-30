@@ -54,15 +54,19 @@ namespace Assets.Scripts.AI
                 directionToShoot.Normalize();
                 FireProjectile(directionToShoot);
                 GetComponentInChildren<Animator>().SetTrigger("Throw");
-
+                StartCoroutine(DelayResetTrigger());
             }
 
             if (Input.GetKeyDown(KeyCode.E) && AI_Type != BehaviourState.Spinner)
             {
                 CanShoot = !CanShoot;
             }
+        }
 
-            GetComponent<BoxCollider>().enabled = !CanShoot;
+        private IEnumerator DelayResetTrigger()
+        {
+            yield return new WaitForSeconds(1.5f);
+            GetComponent<BoxCollider>().enabled = true;
         }
 
 
@@ -94,6 +98,7 @@ namespace Assets.Scripts.AI
                         {
                             DisableProjectile(projectile);
                             GetComponentInChildren<Animator>().SetTrigger("Catch");
+                            GetComponent<BoxCollider>().enabled = false;
                             CanShoot = true;
                         }
                         break;

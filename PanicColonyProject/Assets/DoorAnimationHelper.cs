@@ -23,8 +23,12 @@ public class DoorAnimationHelper : MonoBehaviour
     }
     public void SetOpen(bool value)
     {
-        isOpen = value;
-        fixedAge = 0;
+        if (isOpen != value)
+        {
+            isOpen = value;
+            fixedAge = 0;
+        }
+
 
     }
 

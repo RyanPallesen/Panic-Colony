@@ -57,6 +57,7 @@ public class Projectile : MonoBehaviour
         {
             DestroyThis();
         }
+
         collisionEvent.Invoke();
     }
 

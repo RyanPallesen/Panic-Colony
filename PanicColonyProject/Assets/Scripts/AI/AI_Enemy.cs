@@ -55,7 +55,7 @@ namespace Assets.Scripts.AI
                 directionToShoot.Normalize();
                 FireProjectile(directionToShoot);
                 GetComponentInChildren<Animator>().SetTrigger("Throw");
-                StartCoroutine(DelayResetTrigger());
+                storedProjectile.GetComponent<Projectile>().lastAttachedAI = this.gameObject;
             }
 
             if (Input.GetKeyDown(KeyCode.E) && AI_Type != BehaviourState.Spinner)
@@ -75,7 +75,7 @@ namespace Assets.Scripts.AI
         private void OnTriggerEnter(Collider collision)
         {
             var projectile = collision.gameObject.GetComponent<Projectile>();
-            if (projectile != null)
+            if (projectile != null && projectile.lastAttachedAI != this.gameObject)
             {
                 switch (AI_Type)
                 {

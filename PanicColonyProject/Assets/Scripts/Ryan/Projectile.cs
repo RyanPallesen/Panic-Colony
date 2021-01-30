@@ -17,6 +17,8 @@ public class Projectile : MonoBehaviour
     public UnityEvent onDestroy;
     public BallAcceptor attachedAcceptor;
 
+    public GameObject lastAttachedAI;
+
     // Start is called before the first frame update
     void Start()
     {

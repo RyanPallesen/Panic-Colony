@@ -61,6 +61,8 @@ namespace Assets.Scripts.AI
             {
                 CanShoot = !CanShoot;
             }
+
+            GetComponent<BoxCollider>().enabled = !CanShoot;
         }
 
 

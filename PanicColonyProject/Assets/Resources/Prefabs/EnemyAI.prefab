@@ -48,18 +48,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_showPath: 1
   AI_Type: 2
+  CanShoot: 0
+  projectilePrefab: {fileID: 781752902832936173, guid: 96c309f61d8113541ae606707c6d616a, type: 3}
+  velocityMultiplier: 1
   m_stats:
     initialHealth: 100
     currentHealth: 100
+  m_behaviourProperties:
+    m_path: []
+    m_rotateSpeed: 0
   m_characterController: {fileID: 0}
   m_meshAgent: {fileID: 0}
-  CanShoot: 0
   playerTransform: {fileID: 0}
-  m_behaviourManager:
-    m_path: []
-    m_rotateSpeed: 0.25
-  projectilePrefab: {fileID: 781752902832936173, guid: 96c309f61d8113541ae606707c6d616a, type: 3}
-  velocityMultiplier: 1
 --- !u!143 &2802413566917851986
 CharacterController:
   m_ObjectHideFlags: 0
@@ -127,7 +127,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2802413568101863527}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2802413568603033704}

@@ -24,8 +24,6 @@ namespace Assets.Scripts.AI
         private BehaviourManager m_behaviourProperties;
 
         [HideInInspector]
-        public CharacterController m_characterController;
-        [HideInInspector]
         public NavMeshAgent m_meshAgent;
         [HideInInspector]
         public Transform playerTransform;
@@ -36,7 +34,6 @@ namespace Assets.Scripts.AI
 
         void Start()
         {
-            m_characterController = GetComponent<CharacterController>();
             m_meshAgent = GetComponent<NavMeshAgent>();
 
             playerTransform = FindObjectOfType<PlayerLocomotion>()?.transform;
@@ -68,7 +65,7 @@ namespace Assets.Scripts.AI
 
 
         #region Collision
-        private void OnCollisionEnter(Collision collision)
+        private void OnTriggerEnter(Collider collision)
         {
             var projectile = collision.gameObject.GetComponent<Projectile>();
             if (projectile != null)
@@ -94,6 +91,7 @@ namespace Assets.Scripts.AI
                         if (!CanShoot)
                         {
                             DisableProjectile(projectile);
+                            GetComponentInChildren<Animator>().SetTrigger("Catch");
                             CanShoot = true;
                         }
                         break;
@@ -101,25 +99,6 @@ namespace Assets.Scripts.AI
                         break;
                 }
                 OnHit?.Invoke();
-            }
-        }
-
-        private void OnTriggerEnter(Collider other)
-        {
-            switch (AI_Type)
-            {
-                case BehaviourState.Spinner:
-                    break;
-                case BehaviourState.Smacker:
-                    break;
-                case BehaviourState.Snatcher:
-                    if (!CanShoot)
-                    {
-                        GetComponentInChildren<Animator>().SetTrigger("Catch");
-                    }
-                    break;
-                case BehaviourState.idle:
-                    break;
             }
         }
 

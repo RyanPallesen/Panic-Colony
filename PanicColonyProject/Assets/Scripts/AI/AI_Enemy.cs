@@ -35,9 +35,19 @@ namespace Assets.Scripts.AI
 
 
 
+        Vector3[] corners;
+        [SerializeField]
+        int AimAssistRendererSteps;
+        [SerializeField]
+        LayerMask BallReclamationLayerMask;
+        [SerializeField]
+        LineRenderer lineRenderer;
+
         void Start()
         {
             m_meshAgent = GetComponent<NavMeshAgent>();
+
+            lineRenderer = GetComponent<LineRenderer>();
 
             playerTransform = FindObjectOfType<PlayerLocomotion>()?.transform;
             m_behaviourProperties.Initialize(this);
@@ -59,6 +69,47 @@ namespace Assets.Scripts.AI
                 GetComponentInChildren<Animator>().SetTrigger("Throw");
                 storedProjectile.GetComponent<Projectile>().lastAttachedAI = this.gameObject;
             }
+
+            if (CanShoot)
+            {
+                lineRenderer.enabled = true;
+                AimAssistRender();
+            }
+            else
+            {
+                lineRenderer.enabled = false;
+            }
+        }
+
+        public void AimAssistRender()
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Physics.Raycast(ray, out RaycastHit hitInfo, 100f, BallReclamationLayerMask);
+            Vector3 alignedHitPoint = new Vector3(hitInfo.point.x, transform.position.y, hitInfo.point.z);// hitInfo.point.y = transform.position.y;
+            Vector3 directionToShoot = alignedHitPoint - transform.position;
+            Vector3 origin = transform.position;
+
+            corners = new Vector3[AimAssistRendererSteps + 1];
+
+            for (int i = 0; i < AimAssistRendererSteps; i++)
+            {
+                corners[i] = origin;
+
+                ray = new Ray(origin, directionToShoot);
+
+                if (Physics.Raycast(ray, out RaycastHit hitInfoInner, 100f, BallReclamationLayerMask))
+                {
+                    origin = hitInfoInner.point;
+                    directionToShoot = Vector3.Reflect(directionToShoot, hitInfoInner.normal);
+                }
+                else
+                {
+                    origin = origin + directionToShoot;
+                }
+            }
+
+            lineRenderer.positionCount = corners.Length - 1;
+            lineRenderer.SetPositions(corners);
         }
 
 
@@ -86,7 +137,7 @@ namespace Assets.Scripts.AI
                         FireProjectile(directionToPlayer); // needs fixing
                         break;
                     case BehaviourState.Snatcher:
-                        if (!CanShoot)
+                        if (!CanShoot && projectile.lastAttachedAI != this.gameObject)
                         {
                             DisableProjectile(projectile);
                             GetComponentInChildren<Animator>().SetTrigger("Catch");
@@ -140,14 +191,10 @@ namespace Assets.Scripts.AI
         }
         #endregion
 
-
         #region UI/Audio Events
         public delegate void HitEventHandler();
         public event HitEventHandler OnHit;
         #endregion
-
-
-
         private void OnDrawGizmos()
         {
             if (m_showPath)

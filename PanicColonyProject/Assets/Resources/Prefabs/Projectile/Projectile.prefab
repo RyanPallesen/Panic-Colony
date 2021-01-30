@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4816485019344815142}
   - component: {fileID: 8088371087937083065}
   - component: {fileID: 3894944365603067232}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Projectile
   m_TagString: Respawn
   m_Icon: {fileID: 0}

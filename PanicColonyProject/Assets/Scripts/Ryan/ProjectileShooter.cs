@@ -49,10 +49,12 @@ public class ProjectileShooter : MonoBehaviour
 
     public LineRenderer lineRenderer;
     public Vector3[] corners;
+    public LayerMask BallReclamationLayerMask;
+
     public void AimAssistRender()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        Physics.Raycast(ray, out RaycastHit hitInfo);
+        Physics.Raycast(ray, out RaycastHit hitInfo, 100f, BallReclamationLayerMask);
         Vector3 alignedHitPoint = new Vector3(hitInfo.point.x, transform.position.y, hitInfo.point.z);// hitInfo.point.y = transform.position.y;
         Vector3 directionToShoot = alignedHitPoint - transform.position;
         Vector3 origin = transform.position;
@@ -65,7 +67,7 @@ public class ProjectileShooter : MonoBehaviour
 
             ray = new Ray(origin, directionToShoot);
 
-            if (Physics.Raycast(ray, out RaycastHit hitInfoInner))
+            if (Physics.Raycast(ray, out RaycastHit hitInfoInner,100f, BallReclamationLayerMask))
             {
                 origin = hitInfoInner.point;
                 directionToShoot = Vector3.Reflect(directionToShoot, hitInfoInner.normal);
@@ -79,11 +81,10 @@ public class ProjectileShooter : MonoBehaviour
         lineRenderer.positionCount = corners.Length - 1;
         lineRenderer.SetPositions(corners);
     }
-
     public void BallReclamationTests()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out RaycastHit hitInfo))
+        if (Physics.Raycast(ray, out RaycastHit hitInfo, BallReclamationLayerMask))
         {
 
             Projectile relatedProjectile = hitInfo.collider.GetComponent<Projectile>();
@@ -106,7 +107,7 @@ public class ProjectileShooter : MonoBehaviour
 
                 Ray rayInner = new Ray(transform.position, direction);
 
-                if (Physics.Raycast(rayInner, out RaycastHit HitInfoInner, distance))
+                if (Physics.Raycast(rayInner, out RaycastHit HitInfoInner, distance, BallReclamationLayerMask))
                 {
                     Debug.Log(HitInfoInner.collider.gameObject.name);
 

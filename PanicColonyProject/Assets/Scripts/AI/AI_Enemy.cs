@@ -127,6 +127,7 @@ namespace Assets.Scripts.AI
                     Physics.IgnoreCollision(collider, projCollider);
                 }
             }
+            StartCoroutine(DelayFixCollisions());
             CanShoot = false;
             storedProjectile = null;
         }

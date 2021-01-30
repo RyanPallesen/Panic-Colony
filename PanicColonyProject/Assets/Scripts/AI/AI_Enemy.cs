@@ -8,42 +8,44 @@ namespace Assets.Scripts.AI
 {
     public sealed class AI_Enemy : MonoBehaviour
     {
+        [Header("Entity Properties")]
         [SerializeField]
         private bool m_showPath = false;
-
         public BehaviourState AI_Type;
+        public bool CanShoot = false;
+
+        [Header("Projectile Settings")]
+        public GameObject projectilePrefab;
+        public float velocityMultiplier = 1;
+
         [SerializeField]
         private AI_Stats m_stats; //initialized in editor
+        [SerializeField]
+        private BehaviourManager m_behaviourProperties;
 
         [HideInInspector]
         public CharacterController m_characterController;
         [HideInInspector]
         public NavMeshAgent m_meshAgent;
-
-        public bool CanShoot = false;
-
-
         [HideInInspector]
         public Transform playerTransform;
 
-        [SerializeField]
-        private BehaviourManager m_behaviourManager;
-        public GameObject projectilePrefab;
-        public float velocityMultiplier = 1;
+
+
         void Start()
         {
             m_characterController = GetComponent<CharacterController>();
             m_meshAgent = GetComponent<NavMeshAgent>();
 
             playerTransform = FindObjectOfType<PlayerLocomotion>()?.transform;
-            m_behaviourManager.Initialize(this);
+            m_behaviourProperties.Initialize(this);
         }
 
 
 
         void Update()
         {
-            m_behaviourManager.Run(this);
+            m_behaviourProperties.Run(this);
             if (AI_Type == BehaviourState.Snatcher && Input.GetMouseButtonDown(0) && CanShoot)
             {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -54,7 +56,7 @@ namespace Assets.Scripts.AI
                 FireProjectile(directionToShoot);
             }
 
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.E) && AI_Type != BehaviourState.Spinner)
             {
                 CanShoot = !CanShoot;
             }
@@ -82,7 +84,7 @@ namespace Assets.Scripts.AI
                     case BehaviourState.Smacker:
                         Vector3 directionToPlayer = playerTransform.position - transform.position;
                         directionToPlayer.Normalize();
-                        FireProjectile(directionToPlayer);
+                        FireProjectile(directionToPlayer); // needs fixing
                         break;
                     case BehaviourState.Snatcher:
                         CanShoot = true;
@@ -94,18 +96,11 @@ namespace Assets.Scripts.AI
                 }
                 //projectile.Reset
                 OnHit?.Invoke();
-                projectile.DestroyThis();
             }
 
         }
         #endregion
 
-        private void FireProjectile(Vector3 directionToShoot)
-        {
-            GameObject firedProjectile = Instantiate(projectilePrefab, transform.position + directionToShoot, transform.rotation);
-            firedProjectile.GetComponent<Projectile>().velocity = (directionToShoot * velocityMultiplier);
-            CanShoot = false;   
-        }
 
         #region Player Interactions
 
@@ -129,15 +124,24 @@ namespace Assets.Scripts.AI
         public event HitEventHandler OnHit;
         #endregion
 
+        private void FireProjectile(Vector3 directionToShoot)
+        {
+            GameObject firedProjectile = Instantiate(projectilePrefab, transform.position + directionToShoot, transform.rotation);
+            firedProjectile.GetComponent<Projectile>().velocity = (directionToShoot * velocityMultiplier);
+            CanShoot = false;
+        }
 
         private void OnDrawGizmos()
         {
             if (m_showPath)
             {
-                foreach (var node in m_behaviourManager.m_path)
+                if (m_behaviourProperties.m_path.Count > 0)
                 {
-                    Gizmos.color = Color.green;
-                    Gizmos.DrawSphere(node.position, .25f);
+                    foreach (var node in m_behaviourProperties.m_path)
+                    {
+                        Gizmos.color = Color.green;
+                        Gizmos.DrawSphere(node.position, .25f);
+                    }
                 }
             }
         }

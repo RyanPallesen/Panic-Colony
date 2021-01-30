@@ -93,7 +93,6 @@ namespace Assets.Scripts.AI
                         {
                             DisableProjectile(projectile);
                             CanShoot = true;
-                            GetComponentInChildren<Animator>().SetTrigger("Catch");
                         }
                         break;
                     case BehaviourState.idle:
@@ -102,6 +101,24 @@ namespace Assets.Scripts.AI
                         break;
                 }
                 OnHit?.Invoke();
+            }
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            switch (AI_Type)
+            {
+                case BehaviourState.Spinner:
+                    break;
+                case BehaviourState.Smacker:
+                    break;
+                case BehaviourState.Snatcher:
+                    GetComponentInChildren<Animator>().SetTrigger("Catch");
+                    break;
+                case BehaviourState.idle:
+                    break;
+                default:
+                    break;
             }
         }
 

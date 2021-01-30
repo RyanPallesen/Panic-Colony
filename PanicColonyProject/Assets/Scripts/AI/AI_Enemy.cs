@@ -30,6 +30,8 @@ namespace Assets.Scripts.AI
         [HideInInspector]
         public Transform playerTransform;
 
+        private Projectile storedProjectile;
+
 
 
         void Start()
@@ -87,7 +89,12 @@ namespace Assets.Scripts.AI
                         FireProjectile(directionToPlayer); // needs fixing
                         break;
                     case BehaviourState.Snatcher:
-                        CanShoot = true;
+                        if (!CanShoot)
+                        {
+                            DisableProjectile(projectile);
+                            CanShoot = true;
+                            GetComponentInChildren<Animator>().SetTrigger("Catch");
+                        }
                         break;
                     case BehaviourState.idle:
                         break;
@@ -96,7 +103,13 @@ namespace Assets.Scripts.AI
                 }
                 OnHit?.Invoke();
             }
+        }
 
+        private void DisableProjectile(Projectile projectile)
+        {
+            projectile.GetComponent<Projectile>().velocity = Vector3.zero;
+            projectile.GetComponent<Renderer>().enabled = false;
+            storedProjectile = projectile;
         }
         #endregion
 
@@ -125,9 +138,11 @@ namespace Assets.Scripts.AI
 
         private void FireProjectile(Vector3 directionToShoot)
         {
-            GameObject firedProjectile = Instantiate(projectilePrefab, transform.position + directionToShoot, transform.rotation);
-            firedProjectile.GetComponent<Projectile>().velocity = (directionToShoot * velocityMultiplier);
+            Physics.IgnoreCollision(storedProjectile.GetComponent<Collider>(), this.GetComponent<Collider>());
+            storedProjectile.GetComponent<Renderer>().enabled = true;
+            storedProjectile.GetComponent<Projectile>().velocity = (directionToShoot * velocityMultiplier);
             CanShoot = false;
+            storedProjectile = null;
         }
 
         private void OnDrawGizmos()

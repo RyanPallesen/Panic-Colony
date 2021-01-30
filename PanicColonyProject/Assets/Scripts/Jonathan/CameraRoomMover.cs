@@ -16,7 +16,7 @@ public class CameraRoomMover : MonoBehaviour
     {
         fixedAge += Time.deltaTime;
 
-       transform.position = Vector3.Lerp(transform.position, bounds.center + Vector3.up * bounds.extents.magnitude, fixedAge / secondsToReach);
+       transform.position = Vector3.Lerp(transform.position, bounds.center + Vector3.up * bounds.extents.magnitude + Vector3.back * bounds.extents.x/2, fixedAge / secondsToReach);
     }
 
     public void SetBounds(Bounds _bounds)

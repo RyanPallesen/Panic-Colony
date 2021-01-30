@@ -15,8 +15,10 @@ public class Room : MonoBehaviour
     {
         allObjects = GetComponentsInChildren<Transform>();
 
-        bound = new Bounds(Vector3.zero, Vector3.zero);
         var Colliders = GetComponentsInChildren<Collider>();
+
+        bound = new Bounds(Colliders[0].bounds.center, Vector3.zero);
+
 
         foreach (Collider collider in Colliders)
         {

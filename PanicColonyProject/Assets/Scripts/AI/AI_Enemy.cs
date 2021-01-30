@@ -131,9 +131,10 @@ namespace Assets.Scripts.AI
             storedProjectile = null;
         }
 
+        public float debugDelayFixCollision_for_jibril = .25f;
         IEnumerator DelayFixCollisions()
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(debugDelayFixCollision_for_jibril);
             Collider projCollider = storedProjectile.GetComponent<Collider>();
             foreach (var collider in GetComponents<Collider>())
             {

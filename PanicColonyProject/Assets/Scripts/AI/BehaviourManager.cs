@@ -48,7 +48,7 @@ namespace Assets.Scripts.AI
             yield return new WaitForSeconds(m_rotateSpeed);
             m_animator.SetInteger("position", m_currentFrame);
             m_currentFrame++;
-            if (m_currentFrame > 4)
+            if (m_currentFrame > 7)
             {
                 m_currentFrame = 0;
             }
@@ -115,7 +115,31 @@ namespace Assets.Scripts.AI
                 }
             }
         }
+        public Vector3 GetSpinnerDirection(Transform transform)
+        {
+            switch (m_currentFrame)
+            {
+                case 0:
+                    return transform.forward; //forward`
+                case 1:
+                    return Quaternion.Euler(0, 45, 0) * transform.forward; // diag up right
+                case 2:
+                    return Quaternion.Euler(0, 90, 0) * transform.forward; // right`
+                case 3:
+                    return Quaternion.Euler(0, 135, 0) * transform.forward; // diag down right
+                case 4:
+                    return Quaternion.Euler(0, 180, 0) * transform.forward; // down`
+                case 5:
+                    return Quaternion.Euler(0, 225, 0) * transform.forward; // diag down left
+                case 6:
+                    return Quaternion.Euler(0, 270, 0) * transform.forward; //left`
+                case 7:
+                    return Quaternion.Euler(0, 315, 0) * transform.forward; //diag up left
+            }
+            return Vector3.zero;
+        }
     }
+
 
 
 

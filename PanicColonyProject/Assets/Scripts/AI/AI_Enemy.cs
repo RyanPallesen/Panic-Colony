@@ -93,9 +93,9 @@ namespace Assets.Scripts.AI
                 {
                     case BehaviourState.Spinner:
 
+                        FireProjectile(m_behaviourProperties.GetSpinnerDirection(transform));
 
 
-                        FireProjectile(transform.forward);
                         break;
                     case BehaviourState.Smacker:
                         Vector3 directionToPlayer = playerTransform.position - transform.position;
@@ -127,6 +127,7 @@ namespace Assets.Scripts.AI
             storedProjectile.GetComponent<Renderer>().enabled = true;
             storedProjectile.GetComponent<Projectile>().velocity = (directionToShoot * velocityMultiplier);
             storedProjectile.GetComponent<Collider>().enabled = true;
+            storedProjectile.GetComponent<Projectile>().ResetRicochets();
 
             CanShoot = false;
         }
@@ -169,6 +170,8 @@ namespace Assets.Scripts.AI
             lineRenderer.positionCount = corners.Length - 1;
             lineRenderer.SetPositions(corners);
         }
+
+
         #endregion
 
         #region Player Interactions

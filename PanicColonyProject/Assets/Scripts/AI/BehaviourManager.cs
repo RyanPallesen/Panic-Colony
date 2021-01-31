@@ -48,7 +48,7 @@ namespace Assets.Scripts.AI
             yield return new WaitForSeconds(m_rotateSpeed);
             m_animator.SetInteger("position", m_currentFrame);
             m_currentFrame++;
-            if (m_currentFrame > 7)
+            if (m_currentFrame > 4)
             {
                 m_currentFrame = 0;
             }

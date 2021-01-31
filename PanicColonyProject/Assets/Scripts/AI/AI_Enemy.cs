@@ -97,21 +97,28 @@ namespace Assets.Scripts.AI
                 switch (AI_Type)
                 {
                     case BehaviourState.Spinner:
-
-                        FireProjectile(m_behaviourProperties.GetSpinnerDirection(transform));
-
-
+                        if (projectile.lastAttachedAI != this.gameObject)
+                        {
+                            DisableProjectile(projectile);
+                            projectile.lastAttachedAI = this.gameObject;
+                            m_behaviourProperties.m_animator.SetTrigger("New Trigger");
+                            FireProjectile(m_behaviourProperties.GetSpinnerDirection(transform));
+                        }
                         break;
+
                     case BehaviourState.Smacker:
+                        DisableProjectile(projectile);
                         Vector3 directionToPlayer = playerTransform.position - transform.position;
+                        m_behaviourProperties.m_animator.SetTrigger("Smack");
                         directionToPlayer.Normalize();
                         FireProjectile(directionToPlayer); // needs fixing
                         break;
+
                     case BehaviourState.Snatcher:
                         if (!CanShoot && projectile.lastAttachedAI != this.gameObject)
                         {
                             DisableProjectile(projectile);
-                            GetComponentInChildren<Animator>().SetTrigger("Catch");
+                            m_behaviourProperties.m_animator.SetTrigger("Catch");
                             CanShoot = true;
                         }
                         break;
@@ -129,7 +136,7 @@ namespace Assets.Scripts.AI
         private void FireProjectile(Vector3 directionToShoot)
         {
             storedProjectile.transform.position = firePoint.position;
-            storedProjectile.GetComponent<Renderer>().enabled = true;
+            storedProjectile.GetComponentInChildren<SpriteRenderer>().enabled = true;
             storedProjectile.GetComponent<Projectile>().velocity = (directionToShoot * velocityMultiplier);
             storedProjectile.GetComponent<Collider>().enabled = true;
             storedProjectile.GetComponent<Projectile>().ResetRicochets();
@@ -142,7 +149,7 @@ namespace Assets.Scripts.AI
         {
             projectile.GetComponent<Collider>().enabled = false;
             projectile.GetComponent<Projectile>().velocity = Vector3.zero;
-            projectile.GetComponent<Renderer>().enabled = false;
+            projectile.gameObject.GetComponentInChildren<SpriteRenderer>().enabled = false;
             storedProjectile = projectile.gameObject;
         }
         public void AimAssistRender()

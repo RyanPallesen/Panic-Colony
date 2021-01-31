@@ -6,9 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
-    guid: d1c3109bdb54ad54c8a2b2838528e640
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Scenes/ProjectileTest.unity
-    guid: aefc05e6eae687f49984c48408504a31
+    path: Assets/Scenes/FINAL_SCENES/Menu_Scene.unity
+    guid: 0e5a0a18ba6d33b46bc654b41bf93eb4
+  - enabled: 1
+    path: Assets/Scenes/JibrillTestSceneDesign.unity
+    guid: dc9391026cc45d646bd2de6bf0b829d3
   m_configObjects: {}

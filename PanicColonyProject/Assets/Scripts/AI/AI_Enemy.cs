@@ -66,7 +66,7 @@ namespace Assets.Scripts.AI
                 Vector3 directionToShoot = alignedHitPoint - transform.position;
                 directionToShoot.Normalize();
                 FireProjectile(directionToShoot);
-                GetComponentInChildren<Animator>().SetTrigger("Throw");
+                m_behaviourProperties.m_animator.SetTrigger("Throw");
                 storedProjectile.GetComponent<Projectile>().lastAttachedAI = this.gameObject;
             }
 
@@ -118,7 +118,7 @@ namespace Assets.Scripts.AI
                         if (!CanShoot && projectile.lastAttachedAI != this.gameObject)
                         {
                             DisableProjectile(projectile);
-                            m_behaviourProperties.m_animator.SetTrigger("Catch");
+                            //m_behaviourProperties.m_animator.SetTrigger("Catch");
                             CanShoot = true;
                         }
                         break;

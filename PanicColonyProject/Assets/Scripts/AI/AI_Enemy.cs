@@ -79,6 +79,11 @@ namespace Assets.Scripts.AI
             {
                 lineRenderer.enabled = false;
             }
+
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                CanShoot = false;
+            }
         }
 
 

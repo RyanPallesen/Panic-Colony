@@ -43,7 +43,7 @@ public class OptionsActions : MonoBehaviour
         "4x",
     };
 
-    void Awake()
+    void Start()
     {
         int selectedResolution = SetResolutionSetting();
         SetQualitySetting();

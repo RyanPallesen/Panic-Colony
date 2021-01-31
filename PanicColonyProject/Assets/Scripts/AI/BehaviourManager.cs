@@ -8,7 +8,7 @@ namespace Assets.Scripts.AI
     public class BehaviourManager
     {
         public List<PathNode> m_path;
-        private Animator m_animator;
+        public Animator m_animator;
 
         [Tooltip("The distance this entity should move onto the next node in the list")]
         private float m_closeEnoughToTarget = 1;
@@ -31,7 +31,6 @@ namespace Assets.Scripts.AI
             switch (entity.AI_Type)
             {
                 case BehaviourState.Spinner:
-                    //entity.StartCoroutine(RotateSpinnerOverTime());
                     break;
                 case BehaviourState.Smacker:
                     break;
@@ -79,15 +78,17 @@ namespace Assets.Scripts.AI
                     }
                     if (!entity.CanShoot)
                     {
-                        entity.transform.rotation = Quaternion.LookRotation(lookDirectionToPlayer);
+                        //entity.transform.rotation = Quaternion.LookRotation(lookDirectionToPlayer);
                     }
                     else
                     {
-                        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+/*                        Vector3 mousePos = (Input.mousePosition.y > Screen.height / 2.0f) ? Input.mousePosition : new Vector3(Input.mousePosition.x, -Input.mousePosition.y, Input.mousePosition.z);
+                        Ray ray = Camera.main.ScreenPointToRay(mousePos);
                         RaycastHit hit;
                         Physics.Raycast(ray, out hit);
                         Vector3 lookPoint = hit.point - entity.transform.position;
                         Vector3 hitDirection = Vector3.RotateTowards(entity.transform.forward, lookPoint, 15 * Time.deltaTime, 0);
+                        entity.transform.rotation = Quaternion.LookRotation(hitDirection);*/
                     }
                     break;
 
@@ -96,6 +97,8 @@ namespace Assets.Scripts.AI
                     {
                         MoveOnPath(entity);
                     }
+                    float angleToPlayer = Vector3.Angle(entity.transform.position, entity.playerTransform.position);
+                    m_animator.SetInteger("Position", GetSmackerFrame(angleToPlayer));
                     break;
                 case BehaviourState.idle:
                     break;
@@ -116,8 +119,9 @@ namespace Assets.Scripts.AI
             }
         }
 
-        public int GetSmackerDirection(float angleToPlayer)
+        public int GetSmackerFrame(float angleToPlayer)
         {
+            int offset = (CameraRoomMover.instance.DegreesRotatedClockwise * 90) + 135; // might need to add (probably will)
             angleToPlayer += 135;
 
             if (angleToPlayer >= 0 && angleToPlayer < 45)
@@ -156,6 +160,30 @@ namespace Assets.Scripts.AI
         }
 
 
+        public Vector3 GetSmackerDirection(Transform transform)
+        {
+            int offset = (CameraRoomMover.instance.DegreesRotatedClockwise * 90) + 135; //last number real debug offset
+            switch (m_currentFrame)
+            {
+                case 0:
+                    return Quaternion.Euler(0, 0 + offset, 0) * transform.forward; //forward`
+                case 1:
+                    return Quaternion.Euler(0, 45 + offset, 0) * transform.forward; // diag up right
+                case 2:
+                    return Quaternion.Euler(0, 90 + offset, 0) * transform.forward; // right`
+                case 3:
+                    return Quaternion.Euler(0, 135 + offset, 0) * transform.forward; // diag down right
+                case 4:
+                    return Quaternion.Euler(0, 180 + offset, 0) * transform.forward; // down`
+                case 5:
+                    return Quaternion.Euler(0, 225 + offset, 0) * transform.forward; // diag down left
+                case 6:
+                    return Quaternion.Euler(0, 270 + offset, 0) * transform.forward; //left`
+                case 7:
+                    return Quaternion.Euler(0, 315 + offset, 0) * transform.forward; //diag up left
+            }
+            return Vector3.zero;
+        }
         public Vector3 GetSpinnerDirection(Transform transform)
         {
             int offset = (CameraRoomMover.instance.DegreesRotatedClockwise * 90) + 135; //last number real debug offset

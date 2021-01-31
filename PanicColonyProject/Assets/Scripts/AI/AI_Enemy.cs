@@ -101,7 +101,7 @@ namespace Assets.Scripts.AI
                         {
                             DisableProjectile(projectile);
                             projectile.lastAttachedAI = this.gameObject;
-                            GetComponentInChildren<Animator>().SetTrigger("New Trigger");
+                            m_behaviourProperties.m_animator.SetTrigger("New Trigger");
                             FireProjectile(m_behaviourProperties.GetSpinnerDirection(transform));
                         }
                         break;
@@ -116,7 +116,7 @@ namespace Assets.Scripts.AI
                         if (!CanShoot && projectile.lastAttachedAI != this.gameObject)
                         {
                             DisableProjectile(projectile);
-                            GetComponentInChildren<Animator>().SetTrigger("Catch");
+                            m_behaviourProperties.m_animator.SetTrigger("Catch");
                             CanShoot = true;
                         }
                         break;
@@ -134,7 +134,7 @@ namespace Assets.Scripts.AI
         private void FireProjectile(Vector3 directionToShoot)
         {
             storedProjectile.transform.position = firePoint.position;
-            storedProjectile.GetComponent<Renderer>().enabled = true;
+            storedProjectile.GetComponent<SpriteRenderer>().enabled = true;
             storedProjectile.GetComponent<Projectile>().velocity = (directionToShoot * velocityMultiplier);
             storedProjectile.GetComponent<Collider>().enabled = true;
             storedProjectile.GetComponent<Projectile>().ResetRicochets();
@@ -147,7 +147,7 @@ namespace Assets.Scripts.AI
         {
             projectile.GetComponent<Collider>().enabled = false;
             projectile.GetComponent<Projectile>().velocity = Vector3.zero;
-            projectile.GetComponent<Renderer>().enabled = false;
+            projectile.GetComponent<SpriteRenderer>().enabled = false;
             storedProjectile = projectile.gameObject;
         }
         public void AimAssistRender()

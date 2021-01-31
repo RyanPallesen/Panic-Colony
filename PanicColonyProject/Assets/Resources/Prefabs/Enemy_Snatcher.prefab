@@ -183,8 +183,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3, y: 1.5, z: 3}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 3, y: 2.61, z: 3}
+  m_Center: {x: 0, y: 0.67, z: 0}
 --- !u!120 &2864638966771228152
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -236,7 +236,7 @@ LineRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 1
+        value: 0.12666833
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -257,7 +257,7 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.9386786, g: 1, b: 0, a: 1}
+      key0: {r: 0.735849, g: 0.735849, b: 0.735849, a: 1}
       key1: {r: 1, g: 0, b: 0, a: 0.38039216}
       key2: {r: 0, g: 0, b: 0, a: 1}
       key3: {r: 0, g: 0, b: 0, a: 0}

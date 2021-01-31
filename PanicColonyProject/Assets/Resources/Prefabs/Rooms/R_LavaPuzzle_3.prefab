@@ -342,18 +342,18 @@ PrefabInstance:
     - target: {fileID: 8928765517701377896, guid: dd1c00e2d68f2394f9df575d35cad80f, type: 3}
       propertyPath: onAcceptBall.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 246388326343311272}
+      objectReference: {fileID: 3268999677253611291}
     - target: {fileID: 8928765517701377896, guid: dd1c00e2d68f2394f9df575d35cad80f, type: 3}
       propertyPath: onAcceptBall.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8928765517701377896, guid: dd1c00e2d68f2394f9df575d35cad80f, type: 3}
       propertyPath: onAcceptBall.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetActive
+      value: SetOpen
       objectReference: {fileID: 0}
     - target: {fileID: 8928765517701377896, guid: dd1c00e2d68f2394f9df575d35cad80f, type: 3}
       propertyPath: onAcceptBall.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UnityEngine.GameObject, UnityEngine
+      value: DoorAnimationHelper, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 8928765517701377896, guid: dd1c00e2d68f2394f9df575d35cad80f, type: 3}
       propertyPath: onAcceptBall.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -1882,11 +1882,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 577840463499289266, guid: 53a2597a0f2256546a06c91df6c9e167, type: 3}
   m_PrefabInstance: {fileID: 2894908347241058689}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &246388326343311272 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3118636283990322729, guid: 53a2597a0f2256546a06c91df6c9e167, type: 3}
+--- !u!114 &3268999677253611291 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 392119034667908762, guid: 53a2597a0f2256546a06c91df6c9e167, type: 3}
   m_PrefabInstance: {fileID: 2894908347241058689}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ded9089214efbb4eb053d624f634113, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2894908347242436910
 PrefabInstance:
   m_ObjectHideFlags: 0

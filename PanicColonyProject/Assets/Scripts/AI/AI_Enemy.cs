@@ -134,10 +134,10 @@ namespace Assets.Scripts.AI
         private void FireProjectile(Vector3 directionToShoot)
         {
             storedProjectile.transform.position = firePoint.position;
-            storedProjectile.GetComponent<SpriteRenderer>().enabled = true;
+            storedProjectile.GetComponentInChildren<SpriteRenderer>().enabled = true;
             storedProjectile.GetComponent<Projectile>().velocity = (directionToShoot * velocityMultiplier);
             storedProjectile.GetComponent<Collider>().enabled = true;
-            storedProjectile.GetComponentInChildren<Projectile>().ResetRicochets();
+            storedProjectile.GetComponent<Projectile>().ResetRicochets();
 
             CanShoot = false;
         }
@@ -147,7 +147,7 @@ namespace Assets.Scripts.AI
         {
             projectile.GetComponent<Collider>().enabled = false;
             projectile.GetComponent<Projectile>().velocity = Vector3.zero;
-            projectile.GetComponentInChildren<SpriteRenderer>().enabled = false;
+            projectile.gameObject.GetComponentInChildren<SpriteRenderer>().enabled = false;
             storedProjectile = projectile.gameObject;
         }
         public void AimAssistRender()

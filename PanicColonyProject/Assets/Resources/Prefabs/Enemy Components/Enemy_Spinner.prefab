@@ -236,7 +236,7 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.9386786, g: 1, b: 0, a: 1}
+      key0: {r: 0.00126791, g: 0, b: 1, a: 1}
       key1: {r: 1, g: 0, b: 0, a: 0.38039216}
       key2: {r: 0, g: 0, b: 0, a: 1}
       key3: {r: 0, g: 0, b: 0, a: 0}
@@ -316,6 +316,7 @@ MonoBehaviour:
     currentHealth: 100
   m_behaviourProperties:
     m_path: []
+    m_animator: {fileID: 0}
     m_rotateSpeed: 1
   m_meshAgent: {fileID: 0}
   playerTransform: {fileID: 0}

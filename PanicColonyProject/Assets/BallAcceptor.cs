@@ -19,10 +19,7 @@ public class BallAcceptor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Q))
-        {
-            OnLoseBall();
-        }
+
     }
 
     private void OnCollisionEnter(Collision collision)

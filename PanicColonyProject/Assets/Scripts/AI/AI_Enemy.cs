@@ -81,36 +81,6 @@ namespace Assets.Scripts.AI
             }
         }
 
-        public void AimAssistRender()
-        {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            Physics.Raycast(ray, out RaycastHit hitInfo, 100f, BallReclamationLayerMask);
-            Vector3 alignedHitPoint = new Vector3(hitInfo.point.x, transform.position.y, hitInfo.point.z);// hitInfo.point.y = transform.position.y;
-            Vector3 directionToShoot = alignedHitPoint - transform.position;
-            Vector3 origin = transform.position;
-
-            corners = new Vector3[AimAssistRendererSteps + 1];
-
-            for (int i = 0; i < AimAssistRendererSteps; i++)
-            {
-                corners[i] = origin;
-
-                ray = new Ray(origin, directionToShoot);
-
-                if (Physics.Raycast(ray, out RaycastHit hitInfoInner, 100f, BallReclamationLayerMask))
-                {
-                    origin = hitInfoInner.point;
-                    directionToShoot = Vector3.Reflect(directionToShoot, hitInfoInner.normal);
-                }
-                else
-                {
-                    origin = origin + directionToShoot;
-                }
-            }
-
-            lineRenderer.positionCount = corners.Length - 1;
-            lineRenderer.SetPositions(corners);
-        }
 
 
         #region Collision
@@ -122,14 +92,10 @@ namespace Assets.Scripts.AI
                 switch (AI_Type)
                 {
                     case BehaviourState.Spinner:
-                        if (CanShoot)
-                        {
-                            FireProjectile(transform.forward);
-                        }
-                        else
-                        {
-                            CanShoot = true;
-                        }
+
+
+
+                        FireProjectile(transform.forward);
                         break;
                     case BehaviourState.Smacker:
                         Vector3 directionToPlayer = playerTransform.position - transform.position;
@@ -172,6 +138,36 @@ namespace Assets.Scripts.AI
             projectile.GetComponent<Projectile>().velocity = Vector3.zero;
             projectile.GetComponent<Renderer>().enabled = false;
             storedProjectile = projectile.gameObject;
+        }
+        public void AimAssistRender()
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Physics.Raycast(ray, out RaycastHit hitInfo, 100f, BallReclamationLayerMask);
+            Vector3 alignedHitPoint = new Vector3(hitInfo.point.x, transform.position.y, hitInfo.point.z);// hitInfo.point.y = transform.position.y;
+            Vector3 directionToShoot = alignedHitPoint - transform.position;
+            Vector3 origin = transform.position;
+
+            corners = new Vector3[AimAssistRendererSteps + 1];
+
+            for (int i = 0; i < AimAssistRendererSteps; i++)
+            {
+                corners[i] = origin;
+
+                ray = new Ray(origin, directionToShoot);
+
+                if (Physics.Raycast(ray, out RaycastHit hitInfoInner, 100f, BallReclamationLayerMask))
+                {
+                    origin = hitInfoInner.point;
+                    directionToShoot = Vector3.Reflect(directionToShoot, hitInfoInner.normal);
+                }
+                else
+                {
+                    origin = origin + directionToShoot;
+                }
+            }
+
+            lineRenderer.positionCount = corners.Length - 1;
+            lineRenderer.SetPositions(corners);
         }
         #endregion
 

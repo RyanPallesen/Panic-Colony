@@ -158,7 +158,7 @@ namespace Assets.Scripts.AI
 
         public Vector3 GetSpinnerDirection(Transform transform)
         {
-            int offset = CameraRoomMover.instance.DegreesRotatedClockwise + 135;
+            int offset = (CameraRoomMover.instance.DegreesRotatedClockwise * 90) + 135; //last number real debug offset
             switch (m_currentFrame)
             {
                 case 0:

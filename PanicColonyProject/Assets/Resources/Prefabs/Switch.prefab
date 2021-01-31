@@ -92,7 +92,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1411395814255690623}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.6894297, y: 0.6344054, z: 0.54998994}
@@ -116,6 +116,9 @@ MonoBehaviour:
   onLoseBall:
     m_PersistentCalls:
       m_Calls: []
+  unactiveMat: {fileID: 2100000, guid: fb1ef99add07af4439e6432cc9aae0a6, type: 2}
+  activeMat: {fileID: 2100000, guid: 674b1fec44395ee4eb778c9b256a7880, type: 2}
+  meshRenderer: {fileID: 699043626340126620}
 --- !u!1001 &5203612479249319182
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -176,5 +179,10 @@ PrefabInstance:
 --- !u!4 &1871435473509872883 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5894751624960471549, guid: ab30122bd00fc8649a246775b8f5d8d4, type: 3}
+  m_PrefabInstance: {fileID: 5203612479249319182}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &699043626340126620 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 4721304594656987794, guid: ab30122bd00fc8649a246775b8f5d8d4, type: 3}
   m_PrefabInstance: {fileID: 5203612479249319182}
   m_PrefabAsset: {fileID: 0}

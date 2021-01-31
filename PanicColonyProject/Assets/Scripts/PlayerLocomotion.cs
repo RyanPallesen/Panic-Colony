@@ -29,6 +29,7 @@ public class PlayerLocomotion : MonoBehaviour
 
         Vector3 move = new Vector3(horizontal, 0, vertical);
         
+        /*
         switch(CameraRoomMover.instance.DegreesRotatedClockwise)
         {
             case 0:
@@ -78,6 +79,7 @@ public class PlayerLocomotion : MonoBehaviour
             animHorz = 0;
             animVert = -1;
         }
+        */
 
         animatior.SetFloat("Blend_Side", animVert);
         animatior.SetFloat("Blend_ForwradsBack", animHorz);

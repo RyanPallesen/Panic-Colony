@@ -427,7 +427,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Basher_Side_Ani
-  m_Speed: 1
+  m_Speed: 100
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -4727212759512609406}
@@ -440,7 +440,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 37540ba4a3d440946825526e220dd2bc, type: 2}
+  m_Motion: {fileID: 0}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

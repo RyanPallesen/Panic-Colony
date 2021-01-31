@@ -303,7 +303,6 @@ GameObject:
   - component: {fileID: 3949455710954728439}
   - component: {fileID: 3949455710954728432}
   - component: {fileID: 3949455710954728433}
-  - component: {fileID: 3949455710954728438}
   - component: {fileID: 2644000277817225710}
   m_Layer: 0
   m_Name: Rendering
@@ -319,13 +318,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3949455710954728434}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.46174863, y: 0, z: 0, w: 0.8870109}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 4, y: 4, z: 4}
   m_Children: []
   m_Father: {fileID: 3949455710904396183}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 55, y: 0, z: 0}
 --- !u!212 &3949455710954728432
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -396,19 +395,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &3949455710954728438
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3949455710954728434}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0ed175e4941d494f8993329250fc36c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  transformToFollow: {fileID: 0}
 --- !u!114 &2644000277817225710
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -10,16 +10,13 @@ public class BallAcceptor : MonoBehaviour
     public UnityEvent onAcceptBall;
     public UnityEvent onLoseBall;
 
+    [SerializeField] private Material unactiveMat = null, activeMat = null;
+    [SerializeField] private MeshRenderer meshRenderer = null;
+
     // Start is called before the first frame update
     void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        meshRenderer.material = unactiveMat;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -32,12 +29,15 @@ public class BallAcceptor : MonoBehaviour
             projectile.GetComponent<Collider>().enabled = false;
             onAcceptBall.Invoke();
             acceotedObject = projectile.gameObject;
+            meshRenderer.material = activeMat;
         }
     }
 
     public void OnLoseBall()
     {
         onLoseBall.Invoke();
+
+        meshRenderer.material = unactiveMat;
 
         acceotedObject = null;
     }

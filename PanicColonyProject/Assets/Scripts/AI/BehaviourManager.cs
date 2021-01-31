@@ -18,19 +18,20 @@ namespace Assets.Scripts.AI
         [Header("Spinner Variables")]
         public float m_rotateSpeed;
         private int m_currentFrame = 0;
+        private float lastTurnTime;
 
         [Header("Snatcher Variables")]
         private int NDR = 0;
 
         public void Initialize(AI_Enemy entity)
         {
-            m_animator = entity.GetComponentInChildren<Animator>();
 
             entity.m_meshAgent.angularSpeed = 0; // standard speed is 120
+            m_animator = entity.GetComponentInChildren<Animator>();
             switch (entity.AI_Type)
             {
                 case BehaviourState.Spinner:
-                    entity.StartCoroutine(RotateSpinnerOverTime());
+                    //entity.StartCoroutine(RotateSpinnerOverTime());
                     break;
                 case BehaviourState.Smacker:
                     break;
@@ -40,17 +41,6 @@ namespace Assets.Scripts.AI
                     break;
                 default:
                     break;
-            }
-        }
-
-        IEnumerator RotateSpinnerOverTime()
-        {
-            yield return new WaitForSeconds(m_rotateSpeed);
-            m_animator.SetInteger("position", m_currentFrame);
-            m_currentFrame++;
-            if (m_currentFrame > 7)
-            {
-                m_currentFrame = 0;
             }
         }
 
@@ -66,6 +56,18 @@ namespace Assets.Scripts.AI
                     if (m_path.Count > 0)
                     {
                         MoveOnPath(entity);
+                    }
+
+                    if (lastTurnTime + m_rotateSpeed < Time.time)
+                    {
+                        m_animator.SetInteger("Position", m_currentFrame);
+                        Debug.Log($"uwu");
+                        m_currentFrame++;
+                        if (m_currentFrame > 7)
+                        {
+                            m_currentFrame = 0;
+                        }
+                        lastTurnTime = Time.time;
                     }
                     break;
 
@@ -86,7 +88,6 @@ namespace Assets.Scripts.AI
                         Physics.Raycast(ray, out hit);
                         Vector3 lookPoint = hit.point - entity.transform.position;
                         Vector3 hitDirection = Vector3.RotateTowards(entity.transform.forward, lookPoint, 15 * Time.deltaTime, 0);
-                        entity.transform.rotation = Quaternion.LookRotation(hitDirection);
                     }
                     break;
 
@@ -95,7 +96,6 @@ namespace Assets.Scripts.AI
                     {
                         MoveOnPath(entity);
                     }
-                    entity.transform.rotation = Quaternion.LookRotation(lookDirectionToPlayer);
                     break;
                 case BehaviourState.idle:
                     break;
@@ -115,26 +115,68 @@ namespace Assets.Scripts.AI
                 }
             }
         }
+
+        public int GetSmackerDirection(float angleToPlayer)
+        {
+            angleToPlayer += 135;
+
+            if (angleToPlayer >= 0 && angleToPlayer < 45)
+            {
+                return 0;
+            }
+            if (angleToPlayer >= 45 && angleToPlayer < 90)
+            {
+                return 1;
+            }
+            if (angleToPlayer >= 90 && angleToPlayer < 135)
+            {
+                return 2;
+            }
+            if (angleToPlayer >= 135 && angleToPlayer < 180)
+            {
+                return 3;
+            }
+            if (angleToPlayer >= 180 && angleToPlayer < 225)
+            {
+                return 4;
+            }
+            if (angleToPlayer >= 225 && angleToPlayer < 270)
+            {
+                return 5;
+            }
+            if (angleToPlayer >= 270 && angleToPlayer < 315)
+            {
+                return 6;
+            }
+            if (angleToPlayer >= 315 && angleToPlayer < 360)
+            {
+                return 7;
+            }
+            return 0;
+        }
+
+
         public Vector3 GetSpinnerDirection(Transform transform)
         {
+            int offset = (CameraRoomMover.instance.DegreesRotatedClockwise * 90) + 135; //last number real debug offset
             switch (m_currentFrame)
             {
                 case 0:
-                    return transform.forward; //forward`
+                    return Quaternion.Euler(0, 0 + offset, 0) * transform.forward; //forward`
                 case 1:
-                    return Quaternion.Euler(0, 45, 0) * transform.forward; // diag up right
+                    return Quaternion.Euler(0, 45 + offset, 0) * transform.forward; // diag up right
                 case 2:
-                    return Quaternion.Euler(0, 90, 0) * transform.forward; // right`
+                    return Quaternion.Euler(0, 90 + offset, 0) * transform.forward; // right`
                 case 3:
-                    return Quaternion.Euler(0, 135, 0) * transform.forward; // diag down right
+                    return Quaternion.Euler(0, 135 + offset, 0) * transform.forward; // diag down right
                 case 4:
-                    return Quaternion.Euler(0, 180, 0) * transform.forward; // down`
+                    return Quaternion.Euler(0, 180 + offset, 0) * transform.forward; // down`
                 case 5:
-                    return Quaternion.Euler(0, 225, 0) * transform.forward; // diag down left
+                    return Quaternion.Euler(0, 225 + offset, 0) * transform.forward; // diag down left
                 case 6:
-                    return Quaternion.Euler(0, 270, 0) * transform.forward; //left`
+                    return Quaternion.Euler(0, 270 + offset, 0) * transform.forward; //left`
                 case 7:
-                    return Quaternion.Euler(0, 315, 0) * transform.forward; //diag up left
+                    return Quaternion.Euler(0, 315 + offset, 0) * transform.forward; //diag up left
             }
             return Vector3.zero;
         }

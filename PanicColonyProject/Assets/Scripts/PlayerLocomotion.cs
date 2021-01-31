@@ -29,7 +29,7 @@ public class PlayerLocomotion : MonoBehaviour
 
         Vector3 move = new Vector3(horizontal, 0, vertical);
         
-        /*
+        
         switch(CameraRoomMover.instance.DegreesRotatedClockwise)
         {
             case 0:
@@ -58,6 +58,7 @@ public class PlayerLocomotion : MonoBehaviour
                 break;
         }
 
+        /*
         if (vertical > 0)
         {
             animVert = 0;

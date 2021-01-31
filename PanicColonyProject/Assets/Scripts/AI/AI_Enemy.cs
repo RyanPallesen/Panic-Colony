@@ -79,6 +79,11 @@ namespace Assets.Scripts.AI
             {
                 lineRenderer.enabled = false;
             }
+
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                CanShoot = false;
+            }
         }
 
 
@@ -92,16 +97,21 @@ namespace Assets.Scripts.AI
                 switch (AI_Type)
                 {
                     case BehaviourState.Spinner:
-
-                        FireProjectile(m_behaviourProperties.GetSpinnerDirection(transform));
-
-
+                        if (projectile.lastAttachedAI != this.gameObject)
+                        {
+                            DisableProjectile(projectile);
+                            projectile.lastAttachedAI = this.gameObject;
+                            GetComponentInChildren<Animator>().SetTrigger("New Trigger");
+                            FireProjectile(m_behaviourProperties.GetSpinnerDirection(transform));
+                        }
                         break;
+
                     case BehaviourState.Smacker:
                         Vector3 directionToPlayer = playerTransform.position - transform.position;
                         directionToPlayer.Normalize();
                         FireProjectile(directionToPlayer); // needs fixing
                         break;
+
                     case BehaviourState.Snatcher:
                         if (!CanShoot && projectile.lastAttachedAI != this.gameObject)
                         {

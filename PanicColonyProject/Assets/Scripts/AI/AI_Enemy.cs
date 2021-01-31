@@ -107,7 +107,9 @@ namespace Assets.Scripts.AI
                         break;
 
                     case BehaviourState.Smacker:
+                        DisableProjectile(projectile);
                         Vector3 directionToPlayer = playerTransform.position - transform.position;
+                        m_behaviourProperties.m_animator.SetTrigger("Smack");
                         directionToPlayer.Normalize();
                         FireProjectile(directionToPlayer); // needs fixing
                         break;

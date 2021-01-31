@@ -17,7 +17,7 @@ public class CameraRoomMover : MonoBehaviour
     void Update()
     {
 
-        if(Input.GetKeyDown(KeyCode.Q))
+        if(Input.GetKeyDown(KeyCode.E))
         {
             DegreesRotatedClockwise -= 1;
 
@@ -28,7 +28,7 @@ public class CameraRoomMover : MonoBehaviour
             transform.Rotate(new Vector3(0,-90,0));
         }
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             DegreesRotatedClockwise += 1;
             if (DegreesRotatedClockwise > 3)

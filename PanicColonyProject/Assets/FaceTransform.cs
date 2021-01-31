@@ -17,6 +17,8 @@ public class FaceTransform : MonoBehaviour
     void Update()
     {
         if (transformToFollow)
+        {
             transform.rotation = Quaternion.LookRotation(transformToFollow.transform.position - transform.position) * Quaternion.Euler(0, 180, 0);
+        }
     }
 }

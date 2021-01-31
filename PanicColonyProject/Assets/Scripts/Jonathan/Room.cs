@@ -10,6 +10,8 @@ public class Room : MonoBehaviour
     public BoxCollider collider;
     Bounds bound;
 
+    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +29,8 @@ public class Room : MonoBehaviour
                 bound.Encapsulate(collider.bounds);
             }
         }
+
+        bound.extents *= 0.9f;
 
         collider = gameObject.AddComponent<BoxCollider>();
         collider.isTrigger = true;
@@ -47,6 +51,15 @@ public class Room : MonoBehaviour
         if(other.GetComponent<PlayerLocomotion>())
         {
             CameraRoomMover.instance.SetBounds(bound);
+            other.GetComponentInChildren<ProjectileShooter>().shotProjectiles.Clear();
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+     if(other.GetComponent<Projectile>())
+        {
+            Destroy(other.gameObject);
         }
     }
 }

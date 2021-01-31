@@ -137,7 +137,7 @@ namespace Assets.Scripts.AI
             storedProjectile.GetComponent<SpriteRenderer>().enabled = true;
             storedProjectile.GetComponent<Projectile>().velocity = (directionToShoot * velocityMultiplier);
             storedProjectile.GetComponent<Collider>().enabled = true;
-            storedProjectile.GetComponent<Projectile>().ResetRicochets();
+            storedProjectile.GetComponentInChildren<Projectile>().ResetRicochets();
 
             CanShoot = false;
         }
@@ -147,7 +147,7 @@ namespace Assets.Scripts.AI
         {
             projectile.GetComponent<Collider>().enabled = false;
             projectile.GetComponent<Projectile>().velocity = Vector3.zero;
-            projectile.GetComponent<SpriteRenderer>().enabled = false;
+            projectile.GetComponentInChildren<SpriteRenderer>().enabled = false;
             storedProjectile = projectile.gameObject;
         }
         public void AimAssistRender()

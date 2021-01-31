@@ -13,6 +13,11 @@ public class CameraRoomMover : MonoBehaviour
         instance = this;
     }
 
+
+    private void LateUpdate()
+    {
+        
+    }
     // Update is called once per frame
     void Update()
     {

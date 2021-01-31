@@ -10,8 +10,10 @@ public class Room : MonoBehaviour
     public BoxCollider collider;
     Bounds bound;
 
+    private Vector3 respawnPosition;
+    private GameObject playerObject;
 
-
+    public bool isCurrentRoom;
     // Start is called before the first frame update
     void Start()
     {
@@ -40,17 +42,22 @@ public class Room : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
-
+        if(Input.GetKeyDown(KeyCode.R) && isCurrentRoom)
+        {
+            playerObject.transform.position = respawnPosition;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.GetComponent<PlayerLocomotion>())
         {
+            isCurrentRoom = true;
+               playerObject = other.gameObject;
             CameraRoomMover.instance.SetBounds(bound);
+            respawnPosition = other.transform.position;
             other.GetComponentInChildren<ProjectileShooter>().shotProjectiles.Clear();
         }
     }
@@ -61,5 +68,11 @@ public class Room : MonoBehaviour
         {
             other.GetComponent<Projectile>().DestroyThis();
         }
+        else if(other.GetComponent<PlayerLocomotion>())
+        {
+            isCurrentRoom = false;
+        }
     }
+
+
 }

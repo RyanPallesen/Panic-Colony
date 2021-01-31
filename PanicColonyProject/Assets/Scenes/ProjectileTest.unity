@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 25654506}
   - component: {fileID: 25654505}
   m_Layer: 0
-  m_Name: Room
+  m_Name: Ryan_Room1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -365,7 +365,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 792922056151716804, guid: f70820050ab7020409b8c94fab4734fb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 23.423803
+      value: 24.173803
       objectReference: {fileID: 0}
     - target: {fileID: 792922056151716804, guid: f70820050ab7020409b8c94fab4734fb, type: 3}
       propertyPath: m_LocalPosition.y
@@ -373,7 +373,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 792922056151716804, guid: f70820050ab7020409b8c94fab4734fb, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.1580205
+      value: 2.6580205
       objectReference: {fileID: 0}
     - target: {fileID: 792922056151716804, guid: f70820050ab7020409b8c94fab4734fb, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1708,7 +1708,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2742889068340634922, guid: 5bd79464b1f50934e93060a956a1e26b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 2742889068340634922, guid: 5bd79464b1f50934e93060a956a1e26b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2850,7 +2850,7 @@ GameObject:
   - component: {fileID: 1535602945}
   - component: {fileID: 1535602944}
   m_Layer: 0
-  m_Name: Room (1)
+  m_Name: Ryan_Room2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

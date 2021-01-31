@@ -58,7 +58,7 @@ public class PlayerLocomotion : MonoBehaviour
                 break;
         }
 
-        /*
+
         if (vertical > 0)
         {
             animVert = 0;
@@ -80,7 +80,7 @@ public class PlayerLocomotion : MonoBehaviour
             animHorz = 0;
             animVert = -1;
         }
-        */
+
 
         animatior.SetFloat("Blend_Side", animVert);
         animatior.SetFloat("Blend_ForwradsBack", animHorz);

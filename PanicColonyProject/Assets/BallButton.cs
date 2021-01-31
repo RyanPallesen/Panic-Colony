@@ -12,6 +12,9 @@ public class BallButton : MonoBehaviour
 
     public float timeForActivation;
     private float fixedAge;
+
+    public bool isPressed;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,11 +24,14 @@ public class BallButton : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        fixedAge += Time.deltaTime;
-
-        if (fixedAge > timeForActivation)
+        if (isPressed == true)
         {
-            OnLoseBall();
+            fixedAge += Time.deltaTime;
+
+            if (fixedAge > timeForActivation)
+            {
+                OnLoseBall();
+            }
         }
     }
 
@@ -38,6 +44,7 @@ public class BallButton : MonoBehaviour
         if (projectile)
         {
             fixedAge = 0f;
+            isPressed = true;
             onAcceptBall.Invoke();
         }
     }
@@ -51,12 +58,14 @@ public class BallButton : MonoBehaviour
         if (projectile)
         {
             fixedAge = 0f;
+            isPressed = true;
             onAcceptBall.Invoke();
         }
     }
 
     public void OnLoseBall()
     {
+        isPressed = false;
         onLoseBall.Invoke();
     }
 

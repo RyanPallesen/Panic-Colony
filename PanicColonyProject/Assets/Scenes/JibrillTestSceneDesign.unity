@@ -244,9 +244,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1188445936}
     m_Modifications:
+    - target: {fileID: 4705946721566570790, guid: c3ec6e281a10ae641878f23a231b4f19, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4705946722278752889, guid: c3ec6e281a10ae641878f23a231b4f19, type: 3}
       propertyPath: m_Name
       value: Room2 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4705946722278752889, guid: c3ec6e281a10ae641878f23a231b4f19, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4705946722278752890, guid: c3ec6e281a10ae641878f23a231b4f19, type: 3}
       propertyPath: m_RootOrder
@@ -462,6 +470,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Room1 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 6354851935967023753, guid: 9a1359ffa88679b479ad7f26f1609380, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6354851935967023756, guid: 9a1359ffa88679b479ad7f26f1609380, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -517,6 +529,10 @@ PrefabInstance:
     - target: {fileID: 6354851935967023756, guid: 9a1359ffa88679b479ad7f26f1609380, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6354851937328638336, guid: 9a1359ffa88679b479ad7f26f1609380, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a1359ffa88679b479ad7f26f1609380, type: 3}
@@ -593,6 +609,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Room1 (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 6354851935967023753, guid: 9a1359ffa88679b479ad7f26f1609380, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6354851935967023756, guid: 9a1359ffa88679b479ad7f26f1609380, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -648,6 +668,10 @@ PrefabInstance:
     - target: {fileID: 6354851935967023756, guid: 9a1359ffa88679b479ad7f26f1609380, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6354851937328638336, guid: 9a1359ffa88679b479ad7f26f1609380, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a1359ffa88679b479ad7f26f1609380, type: 3}
@@ -1391,6 +1415,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Room1 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6354851935967023753, guid: 9a1359ffa88679b479ad7f26f1609380, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6354851935967023756, guid: 9a1359ffa88679b479ad7f26f1609380, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -1446,6 +1474,10 @@ PrefabInstance:
     - target: {fileID: 6354851935967023756, guid: 9a1359ffa88679b479ad7f26f1609380, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6354851937328638336, guid: 9a1359ffa88679b479ad7f26f1609380, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a1359ffa88679b479ad7f26f1609380, type: 3}
@@ -1574,6 +1606,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Room1
       objectReference: {fileID: 0}
+    - target: {fileID: 6354851935967023753, guid: 9a1359ffa88679b479ad7f26f1609380, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6354851935967023756, guid: 9a1359ffa88679b479ad7f26f1609380, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1629,6 +1665,10 @@ PrefabInstance:
     - target: {fileID: 6354851935967023756, guid: 9a1359ffa88679b479ad7f26f1609380, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6354851937328638336, guid: 9a1359ffa88679b479ad7f26f1609380, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a1359ffa88679b479ad7f26f1609380, type: 3}
@@ -2100,7 +2140,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1188445936}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Sound Rooms
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2140,6 +2180,10 @@ PrefabInstance:
     - target: {fileID: 6354851935967023753, guid: 9a1359ffa88679b479ad7f26f1609380, type: 3}
       propertyPath: m_Name
       value: Room1 (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6354851935967023753, guid: 9a1359ffa88679b479ad7f26f1609380, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6354851935967023756, guid: 9a1359ffa88679b479ad7f26f1609380, type: 3}
       propertyPath: m_RootOrder
@@ -2196,6 +2240,10 @@ PrefabInstance:
     - target: {fileID: 6354851935967023756, guid: 9a1359ffa88679b479ad7f26f1609380, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6354851937328638336, guid: 9a1359ffa88679b479ad7f26f1609380, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a1359ffa88679b479ad7f26f1609380, type: 3}
@@ -3434,9 +3482,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1188445936}
     m_Modifications:
+    - target: {fileID: 4705946721566570790, guid: c3ec6e281a10ae641878f23a231b4f19, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4705946722278752889, guid: c3ec6e281a10ae641878f23a231b4f19, type: 3}
       propertyPath: m_Name
       value: Room2 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4705946722278752889, guid: c3ec6e281a10ae641878f23a231b4f19, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4705946722278752890, guid: c3ec6e281a10ae641878f23a231b4f19, type: 3}
       propertyPath: m_RootOrder
@@ -3600,9 +3656,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1188445936}
     m_Modifications:
+    - target: {fileID: 4705946721566570790, guid: c3ec6e281a10ae641878f23a231b4f19, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4705946722278752889, guid: c3ec6e281a10ae641878f23a231b4f19, type: 3}
       propertyPath: m_Name
       value: Room2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4705946722278752889, guid: c3ec6e281a10ae641878f23a231b4f19, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4705946722278752890, guid: c3ec6e281a10ae641878f23a231b4f19, type: 3}
       propertyPath: m_RootOrder
@@ -3714,6 +3778,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Room1 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 6354851935967023753, guid: 9a1359ffa88679b479ad7f26f1609380, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6354851935967023756, guid: 9a1359ffa88679b479ad7f26f1609380, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -3769,6 +3837,10 @@ PrefabInstance:
     - target: {fileID: 6354851935967023756, guid: 9a1359ffa88679b479ad7f26f1609380, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6354851937328638336, guid: 9a1359ffa88679b479ad7f26f1609380, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a1359ffa88679b479ad7f26f1609380, type: 3}

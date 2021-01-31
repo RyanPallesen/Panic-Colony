@@ -53,6 +53,10 @@ public class Projectile : MonoBehaviour
                 DestroyThis();
             }
         }
+        else if(collision.collider.CompareTag("AnimationHelper"))
+        {
+            //do noothing : Blake
+        }
         else if(hitAcceptor && !hitAcceptor.acceotedObject)
         {
             lastAttachedAI = null;
